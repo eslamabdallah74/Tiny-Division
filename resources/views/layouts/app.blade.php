@@ -18,8 +18,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/main/main.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/homepage/homepage.css') }}" rel="stylesheet">
+     <link href="{{ asset('css/homepage/homepage.css') }}" rel="stylesheet">
+     <link href="{{ asset('css/main/main.css') }}" rel="stylesheet">
+
+    <main>
+        @yield('navbar')
+    </main>
+
 </head>
 <body>
     <div id="app">
