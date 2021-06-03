@@ -18,11 +18,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-     <link href="{{ asset('css/homepage/homepage.css') }}" rel="stylesheet">
      <link href="{{ asset('css/main/main.css') }}" rel="stylesheet">
 
     <main>
-        @yield('navbar')
+        @yield('homepage-style')
+    </main>
+    <main>
+        @yield('navbar-style')
     </main>
 
 </head>
@@ -30,14 +32,14 @@
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" href="/">Tiny Division</a>
+                <a class="navbar-brand" href="#">Tiny Division</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                   <ul class="navbar-nav">
                     <li class="nav-item active">
-                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                   </ul>
                   <!-- Right Side Of Navbar -->

@@ -1,3 +1,20 @@
+//nav buttons color
+$main-color: #ecf0f1;
+
+body{
+    background-image: url('https://images.pexels.com/photos/1242764/pexels-photo-1242764.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    background-size: cover;
+}
+.navbar-light .navbar-brand {
+    color: $main-color;
+}
+.navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active {
+    color:$main-color;
+}
+.navbar-light .navbar-nav .nav-link{
+    color: $main-color;
+}
 h1 {
     margin: auto;
+    color: white;
 }

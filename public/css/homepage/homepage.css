@@ -1,3 +1,21 @@
+body {
+  background-image: url("https://images.pexels.com/photos/1242764/pexels-photo-1242764.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-size: cover;
+}
+
+.navbar-light .navbar-brand {
+  color: #ecf0f1;
+}
+
+.navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active {
+  color: #ecf0f1;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #ecf0f1;
+}
+
 h1 {
   margin: auto;
+  color: white;
 }

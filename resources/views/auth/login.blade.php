@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('navbar')
+@section('navbar-style')
     <link rel="stylesheet" href="{{asset('css/navbar/navbar.css')}}">
 @endsection
 
