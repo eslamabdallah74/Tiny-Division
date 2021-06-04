@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->middleware('auth');
+Route::view('users', 'users');
+Route::view('users', 'users');
+Route::view('products', 'products');
+Route::view('orders', 'orders');
+
 
 Auth::routes();
 

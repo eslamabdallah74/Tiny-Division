@@ -15,13 +15,17 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-     <link href="{{ asset('css/main/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/main/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/homepage/homepage.css') }}" rel="stylesheet">
+
 
     <main>
-        @yield('homepage-style')
+        @yield('dashbored')
     </main>
     <main>
         @yield('navbar-style')
@@ -75,11 +79,30 @@
     </div>
 </div>
 </nav>
-
+<div class="wrapper">
+    <h3>Dashbored</h3>
+    <div class="contaier">
+        <div class="row">
+            <div id="USERS" onclick="location.href='/users';"
+            class="col-md-11 daashbored-users selected"><i class="fas fa-users fa-2x"></i> <br> Users </div>
+        </div>
+        <div class="row">
+            <div id="PRODDUCTS" onclick="location.href='/products';"
+             class="col-md-11 daashbored-Products"><i class="fab fa-product-hunt fa-2x"></i> <br> Products </div>
+        </div>
+        <div class="row">
+            <div id="ORDERS" onclick="location.href='/orders';"
+             class="col-md-11 daashbored-Orders"><i class="fab fa-jedi-order fa-2x"></i> <br> Orders </div>
+        </div>
+    </div>
+</div>
         <main class="container py-4">
             @yield('content')
         </main>
 
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="{{asset('js/dashbored.js') }}"></script>
+
 </html>

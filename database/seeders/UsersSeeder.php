@@ -21,7 +21,7 @@ class UsersSeeder extends Seeder
        DB::table('users')->insert(
            [
              'name' => $faker->name,
-             'email' => $faker->email,
+             'email' => "eslamabdallah301@gmail.com",
              'password' => Hash::make('yomi2020'),
              'admin' => 1
 

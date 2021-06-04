@@ -1,0 +1,22 @@
+body {
+    background-image: url('https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?cs=srgb&dl=pexels-aleksandar-pasaric-325185.jpg&fm=jpg');
+    background-size: cover;
+}
+.justify-content-center
+ {
+     margin-top: 10%;
+ }
+ .navbar-light .navbar-brand {
+    color: black;
+  }
+
+  .navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active {
+    color: black;
+  }
+
+  .navbar-light .navbar-nav .nav-link {
+    color: black;
+  }
+.wrapper{
+    display: none;
+}

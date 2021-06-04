@@ -1,9 +1,18 @@
 //nav buttons color
 $main-color: #ecf0f1;
+$dashbored-color: #dfe6e9;
+$mini-background: #2d3436;
+
+//classes
+.selected {
+    background-color: $mini-background;
+    color: white;
+}
 
 body{
     background-image: url('https://images.pexels.com/photos/1242764/pexels-photo-1242764.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
     background-size: cover;
+    position: relative;
 }
 .navbar-light .navbar-brand {
     color: $main-color;
@@ -14,7 +23,33 @@ body{
 .navbar-light .navbar-nav .nav-link{
     color: $main-color;
 }
-h1 {
-    margin: auto;
-    color: white;
-}
+
+.wrapper{
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $dashbored-color;
+    min-height: 100vh;
+    min-width: 20vh;
+    h3{
+        text-align: center;
+        margin: 2vh 0;
+    }
+    .contaier{
+        .row{
+                text-align: center;
+            .daashbored-users,
+            .daashbored-Products,
+            .daashbored-Orders{
+                margin-top: 5vh;
+                margin-bottom: 5vh;
+                padding: 5vh 0;
+                cursor: pointer;
+
+
+            }
+
+        }
+    }
+} //end of wapper
