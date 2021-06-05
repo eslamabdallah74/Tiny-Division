@@ -3,6 +3,10 @@
   color: white;
 }
 
+.center {
+  text-align: center;
+}
+
 body {
   background-image: url("https://images.pexels.com/photos/1242764/pexels-photo-1242764.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
   background-size: cover;
@@ -18,21 +22,51 @@ body {
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color: #ecf0f1;
+  color: #F8EFBA;
 }
 
 .wrapper {
   z-index: 2;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  background-color: #dfe6e9;
+  background-color: #F8EFBA;
   min-height: 100vh;
   min-width: 20vh;
+  margin-left: -20vh;
+  transition: 1s ease-in-out;
+  -webkit-transition: 1s ease-in-out;
+  -moz-transition: 1s ease-in-out;
+  -o-transition: 1s ease-in-out;
 }
 .wrapper h3 {
   text-align: center;
   margin: 2vh 0;
+}
+.wrapper .contaier {
+  position: relative;
+}
+.wrapper .contaier .show-hide-button {
+  position: absolute;
+  top: 50%;
+  right: -3vh;
+  color: #F8EFBA;
+  cursor: pointer;
+  z-index: 0;
+}
+.wrapper .contaier .exit-button {
+  position: absolute;
+  top: 0;
+  right: 1vh;
+  cursor: pointer;
+  z-index: 0;
+  transition: 0.3s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+}
+.wrapper .contaier .exit-button:hover {
+  color: red;
 }
 .wrapper .contaier .row {
   text-align: center;
@@ -43,5 +77,32 @@ body {
   margin-top: 5vh;
   margin-bottom: 5vh;
   padding: 5vh 0;
-  cursor: pointer;
+}
+.wrapper .contaier .row a {
+  text-decoration: none;
+  color: black;
+}
+
+.background {
+  background-color: #0000004f;
+  padding: 10vh 0;
+}
+.background .table {
+  color: white;
+}
+.background h3 {
+  color: white;
+  margin: 15vh 0 0 0;
+  padding: 3vh 0;
+  border-radius: 2vh 2vh 0 0;
+  font-weight: bold;
+  text-align: center;
+  background-color: #454d55;
+}
+.background h3 a {
+  text-decoration: none;
+  color: bisque;
+}
+.background h3 a:hover {
+  color: brown;
 }

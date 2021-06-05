@@ -82,27 +82,34 @@
 <div class="wrapper">
     <h3>Dashbored</h3>
     <div class="contaier">
+        <span class="show-hide-button"><i class="fas fa-chevron-circle-right fa-3x"></i></span>
+        <span class="exit-button"><i class="far fa-times-circle"></i></span>
+
         <div class="row">
-            <div id="USERS" onclick="location.href='/users';"
-            class="col-md-11 daashbored-users selected"><i class="fas fa-users fa-2x"></i> <br> Users </div>
+            <div id="USERS"
+            class="col-md-11 daashbored-users">
+            <a href="/users"><i class="fas fa-users fa-2x"></i> <br> User</a> </div>
         </div>
         <div class="row">
-            <div id="PRODDUCTS" onclick="location.href='/products';"
-             class="col-md-11 daashbored-Products"><i class="fab fa-product-hunt fa-2x"></i> <br> Products </div>
+            <div id="PRODDUCTS"
+             class="col-md-11 daashbored-Products">
+             <a href="/products"> <i class="fab fa-product-hunt fa-2x"></i> <br>Products</a>  </div>
         </div>
         <div class="row">
-            <div id="ORDERS" onclick="location.href='/orders';"
-             class="col-md-11 daashbored-Orders"><i class="fab fa-jedi-order fa-2x"></i> <br> Orders </div>
+            <div id="ORDERS"
+             class="col-md-11 daashbored-Orders">
+             <a href="/orders">   <i class="fab fa-jedi-order fa-2x"></i> <br> Orders</a>  </div>
         </div>
     </div>
 </div>
-        <main class="container py-4">
+        <main class="py-4">
             @yield('content')
         </main>
 
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://www.w3schools.com/lib/w3.js"></script>
 <script src="{{asset('js/dashbored.js') }}"></script>
 
 </html>

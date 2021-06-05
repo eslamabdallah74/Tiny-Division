@@ -16,10 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->middleware('auth');
-Route::view('users', 'users');
-Route::view('users', 'users');
-Route::view('products', 'products');
-Route::view('orders', 'orders');
+Route::view('users', 'users')->middleware('auth');
+Route::view('products', 'products')->middleware('auth');
+Route::view('orders', 'orders')->middleware('auth');
 
 
 Auth::routes();

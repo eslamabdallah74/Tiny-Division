@@ -1,12 +1,15 @@
 //nav buttons color
 $main-color: #ecf0f1;
-$dashbored-color: #dfe6e9;
+$dashbored-color: #F8EFBA;
 $mini-background: #2d3436;
 
 //classes
 .selected {
     background-color: $mini-background;
     color: white;
+}
+.center {
+    text-align: center;
 }
 
 body{
@@ -21,22 +24,52 @@ body{
     color:$main-color;
 }
 .navbar-light .navbar-nav .nav-link{
-    color: $main-color;
+    color: $dashbored-color;
 }
 
 .wrapper{
     z-index: 2;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     background-color: $dashbored-color;
     min-height: 100vh;
     min-width: 20vh;
+    margin-left: -20vh;
+    transition:  1s ease-in-out;
+    -webkit-transition:  1s ease-in-out;
+    -moz-transition:  1s ease-in-out;
+    -o-transition:  1s ease-in-out;
+
     h3{
         text-align: center;
         margin: 2vh 0;
     }
     .contaier{
+
+        position: relative;
+        .show-hide-button{
+            position: absolute;
+            top:50%;
+            right: -3vh;
+            color: $dashbored-color;
+            cursor: pointer;
+            z-index: 0;
+        }
+        .exit-button{
+            position: absolute;
+            top:0;
+            right: 1vh;
+            cursor: pointer;
+            z-index: 0;
+            transition:  .3s ease-in-out;
+            -webkit-transition:  .3s ease-in-out;
+            -moz-transition:  .3s ease-in-out;
+            -o-transition:  .3s ease-in-out;
+        }
+        .exit-button:hover{
+            color:red;
+        }
         .row{
                 text-align: center;
             .daashbored-users,
@@ -45,11 +78,41 @@ body{
                 margin-top: 5vh;
                 margin-bottom: 5vh;
                 padding: 5vh 0;
-                cursor: pointer;
 
-
+             }
+             a{
+                 text-decoration: none;
+                 color: black;
+              }
             }
 
         }
-    }
+
 } //end of wapper
+
+// Homepage
+.background{
+    background-color: #0000004f;
+    padding: 10vh 0;
+    .table{
+        color: white;
+    }
+    h3{
+        color: white;
+        margin: 15vh 0 0 0;
+        padding: 3vh 0;
+        border-radius: 2vh 2vh 0 0;
+        font-weight: bold;
+        text-align: center;
+        background-color: #454d55;
+        a
+        {
+            text-decoration: none;
+            color: bisque;
+        }
+        a:hover
+        {
+            color:brown;
+        }
+    }
+}
