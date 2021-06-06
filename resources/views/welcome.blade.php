@@ -31,7 +31,7 @@
                   <tr>
                     <th scope="col"></th>
                     <th scope="col">Username</th>
-                    <th scope="col">@email</th>
+                    <th scope="col">email</th>
                   </tr>
                 </thead>
                 <tbody>

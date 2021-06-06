@@ -120,3 +120,12 @@ body {
 .background h3 a:hover {
   color: brown;
 }
+.background .main-h1 {
+  color: white;
+  margin: 0;
+  padding: 1vh 0;
+  border-radius: 2vh 2vh 0 0;
+  font-weight: bold;
+  text-align: center;
+  background-color: #454d55;
+}

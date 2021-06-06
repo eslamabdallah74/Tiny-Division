@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UsersController;
+use App\Models\Users;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +22,7 @@ Route::view('users', 'users')->middleware('auth');
 Route::view('products', 'products')->middleware('auth');
 Route::view('orders', 'orders')->middleware('auth');
 
+Route::get('users', [UsersController::class, 'show']);
 
 Auth::routes();
 

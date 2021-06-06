@@ -18,14 +18,17 @@ class UsersSeeder extends Seeder
     public function run()
     {
        $faker = Faker::create();
-       DB::table('users')->insert(
-           [
-             'name' => $faker->name,
-             'email' => "eslamabdallah301@gmail.com",
-             'password' => Hash::make('yomi2020'),
-             'admin' => 1
+        foreach (range(1,10) as $value) {
+            DB::table('users')->insert(
+                [
+                  'name'       => $faker->name,
+                  'email'      => $faker->email,
+                  'password'   => $faker->password,              //Hash::make('yomi2020'),
+                  'admin'      => 0,
+                  'created_at' => $faker->date
 
-           ]
+                ]
            );
+        }
     }
 }
