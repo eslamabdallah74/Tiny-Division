@@ -10,9 +10,9 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Users</th>
-                    <th scope="col">Products</th>
-                    <th scope="col">Orders</th>
+                    <th scope="col"><a id="users-link" href="/users">Users</a></th>
+                    <th scope="col"><a id="products-link" href="/products">Products</a></th>
+                    <th scope="col"><a id="orders-link" href="/orders">Orders</a></th>
                   </tr>
                 </thead>
                 <tbody>

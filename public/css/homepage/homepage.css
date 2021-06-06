@@ -22,7 +22,7 @@ body {
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color: #F8EFBA;
+  color: #343A40;
 }
 
 .wrapper {
@@ -30,7 +30,8 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #F8EFBA;
+  background-color: #343A40;
+  color: whitex;
   min-height: 100vh;
   min-width: 20vh;
   margin-left: -20vh;
@@ -42,6 +43,7 @@ body {
 .wrapper h3 {
   text-align: center;
   margin: 2vh 0;
+  color: white;
 }
 .wrapper .contaier {
   position: relative;
@@ -50,12 +52,13 @@ body {
   position: absolute;
   top: 50%;
   right: -3vh;
-  color: #F8EFBA;
+  color: #343A40;
   cursor: pointer;
   z-index: 0;
 }
 .wrapper .contaier .exit-button {
   position: absolute;
+  color: white;
   top: 0;
   right: 1vh;
   cursor: pointer;
@@ -80,7 +83,7 @@ body {
 }
 .wrapper .contaier .row a {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 .background {
@@ -89,6 +92,17 @@ body {
 }
 .background .table {
   color: white;
+}
+.background #users-link,
+.background #products-link,
+.background #orders-link {
+  text-decoration: none;
+  color: bisque;
+}
+.background #users-link:hover,
+.background #products-link:hover,
+.background #orders-link:hover {
+  color: brown;
 }
 .background h3 {
   color: white;
