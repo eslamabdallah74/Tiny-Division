@@ -24,8 +24,7 @@ class UsersSeeder extends Seeder
                   'name'       => $faker->name,
                   'email'      => $faker->email,
                   'password'   => $faker->password,              //Hash::make('yomi2020'),
-                  'admin'      => 0,
-                  'created_at' => $faker->date
+                  'created_at' => $faker->date  
 
                 ]
            );

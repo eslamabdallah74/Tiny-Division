@@ -7,12 +7,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laratrust\Traits\LaratrustUserTrait;
-
+use Seld\PharUtils\Timestamps;
 
 class User extends Authenticatable
 {
     use LaratrustUserTrait;
     use HasFactory, Notifiable;
+
+
+    protected $table = 'users';
+    // public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.

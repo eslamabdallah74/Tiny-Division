@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Seld\PharUtils\Timestamps;
+use Illuminate\Support\Facades\Hash;
+use Validator;
+
 class UsersController extends Controller
 {
     /**
@@ -25,7 +29,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('Create.cUsers');
     }
 
     /**
@@ -36,7 +40,35 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate database
+
+        $validated = $request->validate(
+        [
+            'name' => 'required|unique:users',
+            'email' => 'required|unique:users',
+            'password' => 'required|min:8|same:Confirm-password',
+            'Confirm-password' => 'required',
+        ],
+        [
+            'same' => 'Password does not match',
+        ]
+    );
+
+
+
+
+
+        // Insert new user into databasex
+        $hashPassword = Hash::make($request->password);
+        $insert_user = new User;
+        $insert_user->name     = $request->name;
+        $insert_user->email    = $request->email;
+        $insert_user->password = $hashPassword;
+        $insert_user->save();
+
+        return redirect('users');
+
+
     }
 
     /**
@@ -45,7 +77,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
 
     }
