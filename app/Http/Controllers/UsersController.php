@@ -13,7 +13,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+              // $users = User:all(); //get all records from the database
+              $users = User::orderBy('id' , 'desc')->get(); // get all the records from the database and order them
+              return view('users', ['users' => $users]);
     }
 
     /**
@@ -45,10 +47,7 @@ class UsersController extends Controller
      */
     public function show()
     {
-        // $pizzas = ModelsPizza::all(); //get all records from the database
-        $users = User::orderBy('id' , 'desc')->get(); // get all the records from the database and order them
-        // $pizzas = ModelsPizza::all();
-        return view('users', ['users' => $users]);
+
     }
 
     /**

@@ -24,10 +24,9 @@ Route::view('orders', 'orders')->middleware('auth');
 Route::view('Create/cUser', 'Create/cUser')->middleware('auth');
 
 
-Route::get('users', [UsersController::class, 'show']);
 
-Route::post('Create/cUser',[UsersController::class, 'create']);
 
+Route::resource('users', UsersController::class);
 
 
 Auth::routes();
