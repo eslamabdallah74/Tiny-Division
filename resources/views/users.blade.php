@@ -6,7 +6,10 @@
 @section('content')
     <div class="background">
         <div class="container">
-            <h1 class="main-h1">Users</h1>
+            <h1 class="main-h1">Users
+                <br>
+                    <a href="Create/cUser" class="btn btn-primary">Add new User</a>
+            </h1>
             <table class="table table-dark">
                 <thead>
                   <tr>
@@ -25,9 +28,9 @@
                         <td>{{$user->created_at}}</td>
                         <td><a class="btn btn-info" href="{{$user->id}}">Edit</a></td>
                         <td><a class="btn btn-danger" href="{{$user->id}}">Delete</a></td>
-
                       </tr>
                     @endforeach
+
                 </tbody>
               </table>
         </div>

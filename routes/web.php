@@ -21,8 +21,14 @@ Route::get('/', function () {
 Route::view('users', 'users')->middleware('auth');
 Route::view('products', 'products')->middleware('auth');
 Route::view('orders', 'orders')->middleware('auth');
+Route::view('Create/cUser', 'Create/cUser')->middleware('auth');
+
 
 Route::get('users', [UsersController::class, 'show']);
+
+Route::post('Create/cUser',[UsersController::class, 'create']);
+
+
 
 Auth::routes();
 
