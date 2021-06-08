@@ -47,7 +47,6 @@
                                </div>
                            @endif
                 <input type="submit" value="Submit" class="btn btn-primary">
-                <a href="../users" class="btn btn-danger">Back</a>
             </div>
             </form>
         </div>

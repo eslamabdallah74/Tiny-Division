@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use Seld\PharUtils\Timestamps;
+use App\Models\User;use Seld\PharUtils\Timestamps;
 use Illuminate\Support\Facades\Hash;
 use Validator;
+use Carbon\Carbon;
+
 
 class UsersController extends Controller
 {
@@ -17,9 +18,10 @@ class UsersController extends Controller
      */
     public function index()
     {
-              // $users = User:all(); //get all records from the database
+            //   $usersTime = User::all(); //get all records from the database
               $users = User::orderBy('id' , 'desc')->get(); // get all the records from the database and order them
-              return view('users', ['users' => $users]);
+
+              return view('users', compact('users'));
     }
 
     /**
@@ -44,18 +46,15 @@ class UsersController extends Controller
 
         $validated = $request->validate(
         [
-            'name' => 'required|unique:users',
-            'email' => 'required|unique:users',
-            'password' => 'required|min:8|same:Confirm-password',
+            'name'             => 'required|unique:users',
+            'email'            => 'required|unique:users|email',
+            'password'         => 'required|min:8|same:Confirm-password',
             'Confirm-password' => 'required',
         ],
         [
             'same' => 'Password does not match',
         ]
     );
-
-
-
 
 
         // Insert new user into databasex
@@ -67,8 +66,6 @@ class UsersController extends Controller
         $insert_user->save();
 
         return redirect('users');
-
-
     }
 
     /**

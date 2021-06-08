@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware('auth');
+Route::get('/dashboard', [App\Http\Controllers\Dashbored\DashboredController::class, 'index'])->middleware('auth')->name('dashboard');
 Route::view('users', 'users')->middleware('auth');
 Route::view('products', 'products')->middleware('auth');
 Route::view('orders', 'orders')->middleware('auth');
@@ -26,10 +24,10 @@ Route::view('Create/cUser', 'Create/cUser')->middleware('auth');
 
 
 
-Route::resource('users', UsersController::class);
+Route::resource('users', UsersController::class)->middleware('auth');
 
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 

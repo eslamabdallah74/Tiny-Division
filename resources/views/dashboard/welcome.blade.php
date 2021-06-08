@@ -18,14 +18,14 @@
                 <tbody>
                   <tr>
                     <th scope="row">Number of</th>
-                    <td>1</td>
+                    <td>{{$allUsers->count()}}</td>
                     <td>2</td>
                     <td>3</td>
                   </tr>
                 </tbody>
               </table>
               {{-- End of table 1 --}}
-              <h3 class="">last <a href="/users">Users</a> registered </h3>
+              <h3 class="">last {{$last3users->count()}} <a href="/users">Users</a> registered </h3>
               <table class="table table-striped table-dark">
                 <thead>
                   <tr>
@@ -35,21 +35,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                  </tr>
+                    @foreach ($last3users as $key=>$user)
+                    <tr>
+                        <th scope="row">{{$key+1}}</th>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
+                      </tr>
+                    @endforeach
                 </tbody>
               </table>
                  {{-- End of table Users --}}
