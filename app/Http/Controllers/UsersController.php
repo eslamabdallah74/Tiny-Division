@@ -21,7 +21,7 @@ class UsersController extends Controller
             //   $usersTime = User::all(); //get all records from the database
               $users = User::orderBy('id' , 'desc')->get(); // get all the records from the database and order them
 
-              return view('users', compact('users'));
+              return view('dashboard\users', compact('users'));
     }
 
     /**
@@ -48,14 +48,13 @@ class UsersController extends Controller
         [
             'name'             => 'required|unique:users',
             'email'            => 'required|unique:users|email',
-            'password'         => 'required|min:8|same:Confirm-password',
+            'password'         => 'required|same:Confirm-password',
             'Confirm-password' => 'required',
         ],
         [
             'same' => 'Password does not match',
         ]
     );
-
 
         // Insert new user into databasex
         $hashPassword = Hash::make($request->password);
@@ -65,7 +64,7 @@ class UsersController extends Controller
         $insert_user->password = $hashPassword;
         $insert_user->save();
 
-        return redirect('users');
+        return redirect('dashboard\users');
     }
 
     /**
@@ -87,7 +86,8 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id); //get all records from the database
+         return view('dashboard\Edit\eUser', compact('user'));
     }
 
     /**
@@ -97,9 +97,27 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+
+        $validatedd = $request->validate(
+            [
+                'name'             => 'required|unique:users,name,'.$request->id,
+                'email'             =>'required|email|unique:users,email,'.$request->id,
+                'password'         => 'same:Confirm-password',
+            ],
+            [
+                'same' => 'Password does not match',
+            ]
+        );
+        // Update user into databasex
+        $hashPassword = Hash::make($request->password);
+        $user = User::find($request->id);
+        $user->name     = $request->name;
+        $user->email    = $request->email;
+        $user->password = $hashPassword;
+        $user->save();
+        return redirect('dashboard/users');
     }
 
     /**

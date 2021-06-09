@@ -10,9 +10,9 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col"><a id="users-link" href="/users">Users</a></th>
-                    <th scope="col"><a id="products-link" href="/products">Products</a></th>
-                    <th scope="col"><a id="orders-link" href="/orders">Orders</a></th>
+                    <th scope="col"><a id="users-link" href="{{asset('dashboard/users')}}">Users</a></th>
+                    <th scope="col"><a id="products-link" href="{{asset('dashboard/products')}}">Products</a></th>
+                    <th scope="col"><a id="orders-link" href="{{asset('dashboard/orders')}}">Orders</a></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -25,7 +25,7 @@
                 </tbody>
               </table>
               {{-- End of table 1 --}}
-              <h3 class="">last {{$last3users->count()}} <a href="/users">Users</a> registered </h3>
+              <h3 class="">last {{$last3users->count()}}  registered Users </h3>
               <table class="table table-striped table-dark">
                 <thead>
                   <tr>

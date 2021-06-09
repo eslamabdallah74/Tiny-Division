@@ -11,7 +11,7 @@
             <div class="note">
                 <p>Add New User</p>
             </div>
-            <form method="POST" action="{{url('users')}}">
+            <form method="POST" action="{{url('dashboard/users')}}">
                 @csrf
               <div class="form-content">
                 <div class="row">

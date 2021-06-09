@@ -15,19 +15,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// Show
 Route::get('/dashboard', [App\Http\Controllers\Dashbored\DashboredController::class, 'index'])->middleware('auth')->name('dashboard');
-Route::view('users', 'users')->middleware('auth');
-Route::view('products', 'products')->middleware('auth');
-Route::view('orders', 'orders')->middleware('auth');
-Route::view('Create/cUser', 'Create/cUser')->middleware('auth');
+Route::view('dashboard/users', 'dashboard/users')->middleware('auth');
+Route::view('dashboard/products', 'dashboard/products')->middleware('auth');
+Route::view('dashboard/orders', 'dashboard/orders')->middleware('auth');
+Route::view('dashboard/Create/cUser', 'dashboard/Create/cUser')->middleware('auth');
+
+
+
+// Users Controller
+Route::resource('dashboard/users', UsersController::class)->middleware('auth');
+Route::get('dashboard/Edit/eUser/{id}', [UsersController::class,'edit'])->middleware('auth');
+Route::post('dashboard/users', [UsersController::class,'update'])->middleware('auth');
 
 
 
 
-Route::resource('users', UsersController::class)->middleware('auth');
-
-
+// Login
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 

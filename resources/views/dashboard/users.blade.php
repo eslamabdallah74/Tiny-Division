@@ -8,7 +8,7 @@
         <div class="container">
             <h1 class="main-h1">Users
                 <br>
-                    <a href="Create/cUser" class="btn btn-primary">Add new User</a>
+                    <a href="{{asset('dashboard/Create/cUser')}}" class="btn btn-primary">Add new User</a>
             </h1>
             <table class="table table-dark">
                 <thead>
@@ -25,8 +25,9 @@
                     <tr>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
+                        {{-- This one fucker --}}
                         <td>{{$user->created_at}}</td>
-                        <td><a class="btn btn-info" href="{{$user->id}}">Edit</a></td>
+                        <td><a class="btn btn-info" href="{{asset('dashboard/Edit/eUser/'.$user->id)}}">Edit</a></td>
                         <td><a class="btn btn-danger" href="{{$user->id}}">Delete</a></td>
                       </tr>
                     @endforeach
