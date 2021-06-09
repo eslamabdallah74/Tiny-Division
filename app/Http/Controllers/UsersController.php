@@ -19,7 +19,7 @@ class UsersController extends Controller
     public function index()
     {
             //   $usersTime = User::all(); //get all records from the database
-              $users = User::orderBy('id' , 'desc')->get(); // get all the records from the database and order them
+              $users = User::orderBy('id' , 'desc')->get();// get all the records from the database and order them
 
               return view('dashboard\users', compact('users'));
     }
@@ -100,7 +100,7 @@ class UsersController extends Controller
     public function update(Request $request)
     {
 
-        $validatedd = $request->validate(
+        $validateddOnupdate = $request->validate(
             [
                 'name'             => 'required|unique:users,name,'.$request->id,
                 'email'             =>'required|email|unique:users,email,'.$request->id,
@@ -110,6 +110,7 @@ class UsersController extends Controller
                 'same' => 'Password does not match',
             ]
         );
+
         // Update user into databasex
         $hashPassword = Hash::make($request->password);
         $user = User::find($request->id);
@@ -128,6 +129,8 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteUser = User::findorFail($id);
+        $deleteUser->delete();
+        return redirect('/dashboard/users');
     }
 }

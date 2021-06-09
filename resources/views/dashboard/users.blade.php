@@ -16,6 +16,7 @@
                     <th scope="col">Username</th>
                     <th scope="col">email</th>
                     <th scope="col">Created At</th>
+                    <th scope="col">Updated At</th>
                     <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
                   </tr>
@@ -25,10 +26,22 @@
                     <tr>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
-                        {{-- This one fucker --}}
-                        <td>{{$user->created_at}}</td>
+                        <td>{{Carbon\Carbon::parse($user->created_at)->diffForHumans()}}</td>
+                        <td>{{Carbon\Carbon::parse($user->updated_at)->diffForHumans()}}</td>
                         <td><a class="btn btn-info" href="{{asset('dashboard/Edit/eUser/'.$user->id)}}">Edit</a></td>
-                        <td><a class="btn btn-danger" href="{{$user->id}}">Delete</a></td>
+                        <td>
+                            <a class="btn btn-danger" href="{{ route('users.index') }}"
+                            onclick="event.preventDefault();
+                             document.getElementById(
+                               'delete-form-{{$user->id}}').submit();">
+                          Delete
+                            </a>
+                        </td>
+                        <form id="delete-form-{{$user->id}}"
+                           + action="{{route('users.destroy', $user->id)}}"
+                           method="post">
+                           @csrf @method('DELETE')
+                         </form>
                       </tr>
                     @endforeach
 

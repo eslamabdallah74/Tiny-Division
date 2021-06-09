@@ -9,7 +9,8 @@
     <div class="container register-form">
         <div class="form">
             <div class="note">
-                <p>Edit User</p>
+                <h4 class="pt-2">Edit User</h4>
+                <h6>{{$user->name}}</h6>
             </div>
             <form method="POST" action="{{url('dashboard/users')}}">
                 @csrf

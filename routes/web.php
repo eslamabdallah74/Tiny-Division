@@ -27,8 +27,11 @@ Route::view('dashboard/Create/cUser', 'dashboard/Create/cUser')->middleware('aut
 
 // Users Controller
 Route::resource('dashboard/users', UsersController::class)->middleware('auth');
+Route::post('dashboard/Create/cUser/', [UsersController::class,'store'])->middleware('auth');
 Route::get('dashboard/Edit/eUser/{id}', [UsersController::class,'edit'])->middleware('auth');
 Route::post('dashboard/users', [UsersController::class,'update'])->middleware('auth');
+Route::delete('dashboard/delete/{id}',[UsersController::class],'destroy');
+
 
 
 
