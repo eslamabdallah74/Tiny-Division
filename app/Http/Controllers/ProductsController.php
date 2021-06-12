@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Validator;
 use Carbon\Carbon;
+use App\Http\Controllers\ImageUploadController;
+
 class ProductsController extends Controller
 {
     /**
@@ -48,8 +50,10 @@ class ProductsController extends Controller
                 'product_price'         => 'required',
                 'product_description'   => 'required',
                 'product_approval'      => 'required',
-
-
+                'image'                 => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ],
+            [
+                'mimes' => 'The image should be jpeg,png,jpg,gif,svg',
             ]
         );
 
@@ -59,6 +63,19 @@ class ProductsController extends Controller
             $insert_product->product_approval       = $request->product_approval;
             $insert_product->product_price          = $request->product_price ;
             $insert_product->product_description    = $request->product_description;
+
+
+            if ($request->hasfile('image')) {
+                $file       = $request->file('image');
+                $extension  = $file->getClientOriginalExtension(); //get image exten
+                $filename   = time() . '.' . $extension;
+                $file->move('uploads/products/', $filename);
+                $insert_product->product_img = $filename;
+            } else {
+                return $request;
+                $insert_product->product_img = '';
+            }
+
             $insert_product->save();
 
             return redirect('dashboard\products');

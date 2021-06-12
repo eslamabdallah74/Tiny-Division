@@ -163,3 +163,6 @@ body {
   padding: 1vh;
   border-radius: 20px;
 }
+.background #Product-img img {
+  width: 40%;
+}

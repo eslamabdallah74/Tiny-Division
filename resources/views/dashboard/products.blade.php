@@ -16,6 +16,7 @@
                 <th scope="col">Product name</th>
                 <th scope="col">Product description</th>
                 <th scope="col">Product approval</th>
+                <th scope="col">Product Image</th>
                 <th scope="col">Product price</th>
                 <th scope="col">Created at</th>
               </tr>
@@ -26,6 +27,7 @@
                     <td>{{$product->product_name}}</td>
                     <td>{{$product->product_description}}</td>
                     <td>{{$product->product_approval}}</td>
+                    <td id="Product-img"> <img src="{{ asset('uploads/products/' . $product->product_img) }}" alt="product image"> </td>
                     <td>{{$product->product_price}}</td>
                     <td>{{Carbon\Carbon::parse($product->created_at)->diffForHumans()}}</td>
                     <td><a class="btn btn-info" href="{{asset('dashboard/Edit/eUser/'.$product->id)}}">Edit</a></td>

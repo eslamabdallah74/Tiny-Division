@@ -7,7 +7,7 @@
 @section('content')
  <div class="background">
     <div class="container register-form">
-        <div class="form">
+        <div class="form jumbotron">
             <div class="note">
                 <p>Add New User</p>
             </div>
