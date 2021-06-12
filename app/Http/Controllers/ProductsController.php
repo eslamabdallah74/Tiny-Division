@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Products;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
+use Validator;
+use Carbon\Carbon;
 class ProductsController extends Controller
 {
     /**
@@ -13,7 +16,10 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+         //   $usersTime = User::all(); //get all records from the database
+         $products = Products::orderBy('id' , 'desc')->get();// get all the records from the database and order them
+
+         return view('dashboard\products', compact('products'));
     }
 
     /**
@@ -34,7 +40,28 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate database
+
+        $validated = $request->validate(
+            [
+                'product_name'          => 'required|unique:products',
+                'product_price'         => 'required',
+                'product_description'   => 'required',
+                'product_approval'      => 'required',
+
+
+            ]
+        );
+
+            // Insert new user into databasex
+            $insert_product = new Products;
+            $insert_product->product_name           = $request->product_name;
+            $insert_product->product_approval       = $request->product_approval;
+            $insert_product->product_price          = $request->product_price ;
+            $insert_product->product_description    = $request->product_description;
+            $insert_product->save();
+
+            return redirect('dashboard\products');
     }
 
     /**
@@ -66,7 +93,7 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
     }
@@ -79,6 +106,8 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteProduct = Products::findorFail($id);
+        $deleteProduct->delete();
+        return redirect('/dashboard/products');
     }
 }

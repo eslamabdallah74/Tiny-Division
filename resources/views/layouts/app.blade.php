@@ -45,6 +45,15 @@
                     <li class="nav-item active">
                       <a class="nav-link" href="{{route('dashboard')}}">Home <span class="sr-only">(current)</span></a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{url('dashboard/users')}}">Users <span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item active">
+                        <a class="nav-link" href="{{url('dashboard/products')}}">Products <span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item active">
+                        <a class="nav-link" href="{{url('dashboard/orders')}}">Orders <span class="sr-only">(current)</span></a>
+                      </li>
                   </ul>
                   <!-- Right Side Of Navbar -->
            <ul class="navbar-nav ml-auto">
@@ -69,7 +78,7 @@
                         {{ __('Logout') }}
                     </a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    <form id="logout-form" action="{{ url('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
                 </div>
@@ -88,17 +97,17 @@
         <div class="row">
             <div id="USERS"
             class="col-md-11 daashbored-users">
-            <a href="/users"><i class="fas fa-users fa-2x"></i> <br> User</a> </div>
+            <a href="{{url('dashboard/users')}}"><i class="fas fa-users fa-2x"></i> <br> User</a> </div>
         </div>
         <div class="row">
             <div id="PRODDUCTS"
              class="col-md-11 daashbored-Products">
-             <a href="/products"> <i class="fab fa-product-hunt fa-2x"></i> <br>Products</a>  </div>
+             <a href="{{url('dashboard/products')}}"> <i class="fab fa-product-hunt fa-2x"></i> <br>Products</a>  </div>
         </div>
         <div class="row">
             <div id="ORDERS"
              class="col-md-11 daashbored-Orders">
-             <a href="/orders">   <i class="fab fa-jedi-order fa-2x"></i> <br> Orders</a>  </div>
+             <a href="{{url('dashboard/orders')}}">   <i class="fab fa-jedi-order fa-2x"></i> <br> Orders</a>  </div>
         </div>
     </div>
 </div>

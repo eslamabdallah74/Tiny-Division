@@ -21,6 +21,7 @@
                     <th scope="col">Delete</th>
                   </tr>
                 </thead>
+                
                 <tbody>
                     @foreach ($users as $user)
                     <tr>
@@ -44,8 +45,8 @@
                          </form>
                       </tr>
                     @endforeach
-
                 </tbody>
+
               </table>
         </div>
     </div>

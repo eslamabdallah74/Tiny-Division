@@ -157,3 +157,9 @@ body {
 .background .custom-select {
   border-radius: 20px;
 }
+.background .register-form label {
+  color: white;
+  background-color: #343A40;
+  padding: 1vh;
+  border-radius: 20px;
+}
