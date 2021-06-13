@@ -11,7 +11,7 @@
             <div class="note">
                 <p>Add New Product</p>
             </div>
-            <form method="POST" action="{{url('dashboard/products')}}" enctype="multipart/form-data">
+            <form method="POST" action="{{asset('dashboard/Create/cProduct/')}}" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-row pt-3">
