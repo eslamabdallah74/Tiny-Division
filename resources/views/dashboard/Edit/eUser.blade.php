@@ -12,7 +12,7 @@
                 <h4 class="pt-2">Edit User</h4>
                 <h6>{{$user->name}}</h6>
             </div>
-            <form method="POST" action="{{url('dashboard/users')}}">
+            <form method="POST" action="{{asset('dashboard/users')}}">
                 @csrf
               <div class="form-content">
                 <div class="row">

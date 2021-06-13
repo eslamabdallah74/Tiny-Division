@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Validator;
 use Carbon\Carbon;
 use App\Http\Controllers\ImageUploadController;
-
+use Illuminate\Support\Facades\File;
 class ProductsController extends Controller
 {
     /**
@@ -114,10 +114,9 @@ class ProductsController extends Controller
     public function update(Request $request)
     {
         // Validate database
-
         $validated = $request->validate(
             [
-                'product_name'          => 'required|unique:products,product_name,'.$request->id,
+                'product_name'          => 'required',
                 'product_price'         => 'required',
                 'product_description'   => 'required',
                 'product_approval'      => 'required',
@@ -127,29 +126,27 @@ class ProductsController extends Controller
                 'mimes' => 'The image should be jpeg,png,jpg,gif,svg',
             ]
         );
-
-            // Insert new user into databasex
-            $insert_product = Products::find($request->id);
-            $insert_product->product_name           = $request->product_name;
-            $insert_product->product_approval       = $request->product_approval;
-            $insert_product->product_price          = $request->product_price ;
-            $insert_product->product_description    = $request->product_description;
-
+            //  update product into databasex
+            $update_product = Products::find($request->id);
+            $update_product->product_name           = $request->product_name;
+            $update_product->product_approval       = $request->product_approval;
+            $update_product->product_price          = $request->product_price ;
+            $update_product->product_description    = $request->product_description;
 
             if ($request->hasfile('image')) {
+                $destination = 'uploads/products/'.$update_product->product_img;
+                if (File::exists($destination)) {
+                   File::delete($destination);
+                }
                 $file       = $request->file('image');
                 $extension  = $file->getClientOriginalExtension(); //get image exten
                 $filename   = time() . '.' . $extension;
                 $file->move('uploads/products/', $filename);
-                $insert_product->product_img = $filename;
-            } else {
-                return $request;
-                $insert_product->product_img = '';
+                $update_product->product_img = $filename;
             }
+            $update_product->update();
+            return redirect('dashboard/products/');
 
-            $insert_product->save();
-
-            return redirect('dashboard\products');
     }
 
     /**
@@ -161,6 +158,11 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         $deleteProduct = Products::findorFail($id);
+        $destination = 'uploads/products/'.$deleteProduct->product_img;
+        if (File::exists($destination))
+    {
+            File::delete($destination);
+        }
         $deleteProduct->delete();
         return redirect('/dashboard/products');
     }

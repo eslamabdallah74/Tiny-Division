@@ -11,12 +11,12 @@
             <div class="note">
                 <p>Add New Product</p>
             </div>
-            <form method="POST" action="{{url('dashboard/products/')}}" enctype="multipart/form-data">
+            <form method="POST" action="{{asset('dashboard/products/')}}" enctype="multipart/form-data">
                 @csrf
-
                 <div class="form-row pt-3">
                   <div class="form-group col-md-6">
-                    <input value='{{$product->product_name}}' name="product_name" type="text" class="form-control" id="inputEmail4" placeholder="Product Name">
+                    <input type="hidden" name="id" value="{{$product->id}}">
+                    <input name="product_name" value='{{$product->product_name}}'  type="text" class="form-control" id="inputEmail4" placeholder="Product Name">
                   </div>
                   <div class="form-group col-md-6">
                     <input value='{{$product->product_price}}' name="product_price" type="number" class="form-control" id="inputPassword4" placeholder="Product Price">
@@ -26,16 +26,30 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text">Description</span>
                     </div>
-                    <textarea value='{{$product->product_description}}' name="product_description" class="form-control" aria-label="With textarea" rows="5"></textarea>
+                    <textarea name="product_description" class="form-control" aria-label="With textarea" rows="5">{{$product->product_description}}</textarea>
                   </div>
                   <div class="pt-3">
                     <input name="image" class="form-control form-control" id="formFileLg" type="file">
                   </div>
+                  <div class="pt-3">
+                    <span id="Product-img-update"> Current image <img src="{{ asset('uploads/products/' . $product->product_img) }}" alt="product image"> </span>
+                  </div>
                 <div class="form-row pt-3">
-                    <select value='{{$product->approval}}'  name="product_approval" class="custom-select" >
-                        <option value="" selected>Product Approval</option>
-                        <option value="0">Not Approved</option>
-                        <option value="1">Approved</option>
+                    <select  name="product_approval" class="custom-select" >
+                        <option
+                        @php
+                        if ($product->product_approval == 0) {
+                            echo 'selected';
+                        };
+                        @endphp
+                        value="0">Not Approved</option>
+                        <option
+                        @php
+                        if ($product->product_approval == 1) {
+                            echo 'selected';
+                        };
+                        @endphp
+                         value="1">Approved</option>
                       </select>
                 </div>
                    {{-- Validate error msg --}}
@@ -48,7 +62,7 @@
                        </ul>
                    </div>
                @endif
-                <button type="submit" class="btn btn-primary mt-4">Add Product</button>
+                <button type="submit" class="btn btn-primary mt-4">Edit Product</button>
               </form>
         </div>
     </div>
