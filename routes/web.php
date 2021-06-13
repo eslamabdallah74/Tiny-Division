@@ -38,7 +38,10 @@ Route::delete('dashboard/delete/{id}',[UsersController::class],'destroy');
 // Products Controller
 Route::resource('dashboard/products', ProductsController::class)->middleware('auth');
 Route::post('dashboard/products/cProducts/', [ProductsController::class,'store'])->middleware('auth');
+Route::get('dashboard/Edit/eProduct/{id}', [ProductsController::class,'edit'])->middleware('auth');
+Route::post('dashboard/products', [ProductsController::class,'update'])->middleware('auth');
 Route::delete('dashboard/delete/{id}',[ProductsController::class],'destroy');
+
 
 
 

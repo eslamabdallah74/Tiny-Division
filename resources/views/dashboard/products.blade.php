@@ -30,7 +30,7 @@
                     <td id="Product-img"> <img src="{{ asset('uploads/products/' . $product->product_img) }}" alt="product image"> </td>
                     <td>{{$product->product_price}}</td>
                     <td>{{Carbon\Carbon::parse($product->created_at)->diffForHumans()}}</td>
-                    <td><a class="btn btn-info" href="{{asset('dashboard/Edit/eUser/'.$product->id)}}">Edit</a></td>
+                    <td><a class="btn btn-info" href="{{asset('dashboard/Edit/eProduct/'.$product->id)}}">Edit</a></td>
                     <td>
                         <a class="btn btn-danger" href="{{ route('users.index') }}"
                         onclick="event.preventDefault();
