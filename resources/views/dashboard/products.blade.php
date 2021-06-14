@@ -14,6 +14,7 @@
             <thead>
               <tr>
                 <th scope="col">Product name</th>
+                <th scope="col">category</th>
                 <th scope="col">Product description</th>
                 <th scope="col">Product approval</th>
                 <th scope="col">Product Image</th>
@@ -25,6 +26,7 @@
                 @foreach ($products as $product)
                 <tr>
                     <td>{{$product->product_name}}</td>
+                    <td>{{$product->category_id}}</td>
                     <td>{{$product->product_description}}</td>
                     <td>{{$product->product_approval}}</td>
                     <td id="Product-img"> <img src="{{ asset('uploads/products/' . $product->product_img) }}" alt="product image"> </td>

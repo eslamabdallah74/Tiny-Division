@@ -41,18 +41,21 @@
                   <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                  <ul class="navbar-nav">
-                    <li class="nav-item active">
-                      <a class="nav-link" href="{{route('dashboard')}}">Home <span class="sr-only">(current)</span></a>
+                  <ul class="navbar-nav" id="navbar-edit">
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{route('dashboard')}}">Home</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{url('dashboard/users')}}">Users <span class="sr-only">(current)</span></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('dashboard/users')}}">Users</a>
                       </li>
-                      <li class="nav-item active">
-                        <a class="nav-link" href="{{url('dashboard/products')}}">Products <span class="sr-only">(current)</span></a>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{url('dashboard/categories')}}">Categories</a>
                       </li>
-                      <li class="nav-item active">
-                        <a class="nav-link" href="{{url('dashboard/orders')}}">Orders <span class="sr-only">(current)</span></a>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{url('dashboard/products')}}">Products</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{url('dashboard/orders')}}">Orders</a>
                       </li>
                   </ul>
                   <!-- Right Side Of Navbar -->

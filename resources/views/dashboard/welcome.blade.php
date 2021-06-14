@@ -11,6 +11,7 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col"><a id="users-link" href="{{asset('dashboard/users')}}">Users</a></th>
+                    <th scope="col"><a id="products-link" href="{{asset('dashboard/categories')}}">Categories</a></th>
                     <th scope="col"><a id="products-link" href="{{asset('dashboard/products')}}">Products</a></th>
                     <th scope="col"><a id="orders-link" href="{{asset('dashboard/orders')}}">Orders</a></th>
                   </tr>
@@ -21,6 +22,7 @@
                     <td>{{$allUsers->count()}}</td>
                     <td>2</td>
                     <td>3</td>
+                    <td>4</td>
                   </tr>
                 </tbody>
               </table>

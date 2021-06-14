@@ -28,7 +28,10 @@ body{
 .navbar-light .navbar-nav .nav-link{
     color: $main-color;
 }
-
+#navbar-edit
+{
+    margin-left: auto;
+}
 .wrapper{
     z-index: 2;
     position: fixed;

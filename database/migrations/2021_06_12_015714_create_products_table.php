@@ -20,7 +20,12 @@ class CreateProductsTable extends Migration
             $table->boolean('product_approval');
             $table->string('product_price');
             $table->string('product_img')->nullable();
-            $table->string('orderd_by')->nullable();
+            $table->integer('orderd_by')->nullable();
+            $table->string('review')->nullable();
+            $table->integer('rating')->nullable();
+            $table->integer('category_id')->nullable();
+
+
             $table->timestamps();
 
 

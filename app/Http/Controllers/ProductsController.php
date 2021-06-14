@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Validator;
 use Carbon\Carbon;
 use App\Http\Controllers\ImageUploadController;
+use App\Models\category;
 use Illuminate\Support\Facades\File;
 class ProductsController extends Controller
 {
@@ -19,7 +20,8 @@ class ProductsController extends Controller
     public function index()
     {
          //   $usersTime = User::all(); //get all records from the database
-         $products = Products::orderBy('id' , 'desc')->get();// get all the records from the database and order them
+        $products = Products::orderBy('id' , 'desc')->get();// get all the records from the database and order them
+        // $products = Products::with(relations: 'getCategory')->get();
 
          return view('dashboard\products', compact('products'));
     }
@@ -31,7 +33,9 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        $categoriesP = category::all();
+        return view('dashboard\Create\cProduct', compact('categoriesP'));
+
     }
 
     /**
@@ -50,6 +54,7 @@ class ProductsController extends Controller
                 'product_price'         => 'required',
                 'product_description'   => 'required',
                 'product_approval'      => 'required',
+                'category_id'           => 'required',
                 'image'                 => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ],
             [
@@ -63,6 +68,8 @@ class ProductsController extends Controller
             $insert_product->product_approval       = $request->product_approval;
             $insert_product->product_price          = $request->product_price ;
             $insert_product->product_description    = $request->product_description;
+            $insert_product->category_id            = $request->category_id;
+
 
 
             if ($request->hasfile('image')) {
@@ -78,7 +85,7 @@ class ProductsController extends Controller
 
             $insert_product->save();
 
-            return redirect('dashboard\products');
+
     }
 
     /**
