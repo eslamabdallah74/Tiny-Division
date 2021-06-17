@@ -21,13 +21,13 @@
                     <th scope="row">Number of</th>
                     <td>{{$allUsers->count()}}</td>
                     <td>2</td>
-                    <td>3</td>
+                    <td>{{$allproducts->count()}}</td>
                     <td>4</td>
                   </tr>
                 </tbody>
               </table>
               {{-- End of table 1 --}}
-              <h3 class="">last {{$last3users->count()}}  registered Users </h3>
+              <h3 class="">last {{$last3users->count()}}  <a href="/dashboard/users">Users</a> registered </h3>
               <table class="table table-striped table-dark">
                 <thead>
                   <tr>
@@ -47,37 +47,36 @@
                 </tbody>
               </table>
                  {{-- End of table Users --}}
-                 <h3 class="">last <a href="/products">Products</a> registered</h3>
+                 <h3 class="">last 3 <a href="/dashboard/products">Products</a> registered</h3>
                  <table class="table table-striped table-dark">
                    <thead>
                      <tr>
                        <th scope="col">#</th>
                        <th scope="col">Product Name</th>
                        <th scope="col">Product Price</th>
-                       <th scope="col">Product status</th>
+                       <th scope="col">Product Image</th>
+                       <th scope="col">Product Description</th>
+
 
                      </tr>
                    </thead>
                    <tbody>
-                     <tr>
-                       <th scope="row">1</th>
-                       <td>Mark</td>
-                       <td>Otto</td>
-                       <td>Otto</td>
-                     </tr>
-                     <tr>
-                       <th scope="row">2</th>
-                       <td>Jacob</td>
-                       <td>Thornton</td>
-                       <td>Otto</td>
-                     </tr>
-                     <tr>
-                       <th scope="row">3</th>
-                       <td>Larry</td>
-                       <td>the Bird</td>
-                       <td>Otto</td>
-                     </tr>
-                   </tbody>
+                    @foreach ($last3products as $key=>$product)
+                    <tr>
+                        <th scope="row">{{$key+1}}</th>
+                        <td>{{$product->product_name}}</td>
+                        <td>{{$product->product_price}}</td>
+                        <td>
+                           <span id="dashbored-img">
+                             <img src="{{ asset('uploads/products/' . $product->product_img) }}" alt="product image">
+                            </span>
+                        </td>
+                        <td>{{$product->product_description}}</td>
+
+                      </tr>
+                    @endforeach
+                </tbody>
+
                  </table>
                  {{-- End of table Products --}}
                  <h3 class="">last <a href="/orders">Orders</a> registered</h3>

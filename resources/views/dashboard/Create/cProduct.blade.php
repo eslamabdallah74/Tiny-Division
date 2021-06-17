@@ -31,14 +31,14 @@
                     <input name="image" class="form-control form-control" id="formFileLg" type="file">
                   </div>
 
-                  {{-- <div class="form-row pt-3">
-                     <select  name="category_id'" class="custom-select" >
+                     <div class="form-row pt-3">
+                     <select  name="category_id" class="custom-select" >
                         <option value="" selected>Categories</option>
                         @foreach ($categoriesP as $category)
                         <option  value="{{$category->id}}">{{$category->category_name}}</option>
                         @endforeach
                     </select>
-                </div> --}}
+                   </div>
 
                 <div class="form-row pt-3">
                     <select  name="product_approval" class="custom-select" >

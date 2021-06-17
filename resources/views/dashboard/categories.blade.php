@@ -10,6 +10,16 @@
                 <br>
                     <a href="{{asset('dashboard/Create/cCategory')}}" class="btn btn-primary">Add new Category</a>
             </h1>
+            {{-- Validate error msg --}}
+                   @if ($errors->any())
+                   <div class="alert alert-danger">
+                       <ul class="">
+                           @foreach ($errors->all() as $error)
+                               <li>{{ $error }}</li>
+                           @endforeach
+                       </ul>
+                   </div>
+               @endif
             <table class="table table-dark">
                 <thead>
                 <tr>

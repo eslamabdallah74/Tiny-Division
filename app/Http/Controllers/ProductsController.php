@@ -19,8 +19,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-         //   $usersTime = User::all(); //get all records from the database
-        $products = Products::orderBy('id' , 'desc')->get();// get all the records from the database and order them
+        $products = Products::orderBy('id' , 'desc')->with('category')->get();
+        // $products = Products::orderBy('id' , 'desc')->get();// get all the records from the database and order them
         // $products = Products::with(relations: 'getCategory')->get();
 
          return view('dashboard\products', compact('products'));
@@ -34,7 +34,9 @@ class ProductsController extends Controller
     public function create()
     {
         $categoriesP = category::all();
-        return view('dashboard\Create\cProduct', compact('categoriesP'));
+        $products = Products::with('category')->get();
+
+        return view('dashboard\Create\cProduct', compact('categoriesP','products'));
     }
 
     /**
@@ -53,7 +55,7 @@ class ProductsController extends Controller
                 'product_price'         => 'required',
                 'product_description'   => 'required',
                 'product_approval'      => 'required',
-                // 'category_id'           => 'required',
+                'category_id'           => 'required',
                 'image'                 => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
             ],
@@ -68,7 +70,7 @@ class ProductsController extends Controller
             $insert_product->product_approval       = $request->product_approval;
             $insert_product->product_price          = $request->product_price ;
             $insert_product->product_description    = $request->product_description;
-            // $insert_product->category_id            = $request->category_id;
+            $insert_product->category_id            = $request->category_id;
 
             if ($request->hasfile('image')) {
                 $file       = $request->file('image');
@@ -102,7 +104,12 @@ class ProductsController extends Controller
     public function edit($id)
     {
          $product = Products::find($id); //get all records from the database
-         return view('dashboard\Edit\eProduct', compact('product'));
+         $categoriesP = category::all();
+         $products = Products::with('category')->get();
+         return view('dashboard\Edit\eProduct', compact('product','categoriesP','products'));
+
+
+         return view('dashboard\Create\cProduct', compact('categoriesP','products'));
     }
 
     /**
@@ -121,6 +128,7 @@ class ProductsController extends Controller
                 'product_price'         => 'required',
                 'product_description'   => 'required',
                 'product_approval'      => 'required',
+                'category_id'           => 'required',
                 'image'                 => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ],
             [
@@ -133,6 +141,8 @@ class ProductsController extends Controller
             $update_product->product_approval       = $request->product_approval;
             $update_product->product_price          = $request->product_price ;
             $update_product->product_description    = $request->product_description;
+            $update_product->category_id            = $request->category_id;
+
 
             if ($request->hasfile('image')) {
                 $destination = 'uploads/products/'.$update_product->product_img;

@@ -19,7 +19,7 @@
                     <input name="product_name" value='{{$product->product_name}}'  type="text" class="form-control" id="inputEmail4" placeholder="Product Name">
                   </div>
                   <div class="form-group col-md-6">
-                    <input value='{{$product->product_price}}' name="product_price" type="number" class="form-control" id="inputPassword4" placeholder="Product Price">
+                    <input value="{{old('product_price', $product->product_price)}}" name="product_price" type="number" class="form-control" id="inputPassword4" placeholder="Product Price">
                   </div>
                 </div>
                 <div class="input-group">
@@ -34,6 +34,16 @@
                   <div class="pt-3">
                     <span id="Product-img-update"> Current image <img src="{{ asset('uploads/products/' . $product->product_img) }}" alt="product image"> </span>
                   </div>
+
+                  <div class="form-row pt-3">
+                     <select  name="category_id" class="custom-select">
+                        <option value="" selected>Categories</option>
+                        @foreach ($categoriesP as $category)
+                        <option  value="{{$category->id}}">{{$category->category_name}}</option>
+                        @endforeach
+                    </select>
+                   </div>
+
                 <div class="form-row pt-3">
                     <select  name="product_approval" class="custom-select" >
                         <option

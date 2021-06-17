@@ -17,7 +17,7 @@ class ProductsSeeder extends Seeder
     {
 
         $faker = Faker::create();
-        foreach (range(1,10) as $value) {
+        foreach (range(1,2) as $value) {
             DB::table('products')->insert(
                 [
                   'product_name'            => $faker->name,
