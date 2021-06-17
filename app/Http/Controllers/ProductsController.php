@@ -35,7 +35,6 @@ class ProductsController extends Controller
     {
         $categoriesP = category::all();
         return view('dashboard\Create\cProduct', compact('categoriesP'));
-
     }
 
     /**
@@ -54,8 +53,9 @@ class ProductsController extends Controller
                 'product_price'         => 'required',
                 'product_description'   => 'required',
                 'product_approval'      => 'required',
-                'category_id'           => 'required',
-                'image'                 => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                // 'category_id'           => 'required',
+                'image'                 => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
             ],
             [
                 'mimes' => 'The image should be jpeg,png,jpg,gif,svg',
@@ -68,9 +68,7 @@ class ProductsController extends Controller
             $insert_product->product_approval       = $request->product_approval;
             $insert_product->product_price          = $request->product_price ;
             $insert_product->product_description    = $request->product_description;
-            $insert_product->category_id            = $request->category_id;
-
-
+            // $insert_product->category_id            = $request->category_id;
 
             if ($request->hasfile('image')) {
                 $file       = $request->file('image');
@@ -78,14 +76,10 @@ class ProductsController extends Controller
                 $filename   = time() . '.' . $extension;
                 $file->move('uploads/products/', $filename);
                 $insert_product->product_img = $filename;
-            } else {
-                return $request;
-                $insert_product->product_img = '';
             }
 
             $insert_product->save();
-
-
+            return redirect('dashboard\products');
     }
 
     /**

@@ -11,7 +11,7 @@
             <div class="note">
                 <p>Add New Product</p>
             </div>
-            <form method="POST" action="{{asset('dashboard/Create/cProduct/')}}">
+            <form method="POST" action="{{asset('dashboard\Create\cProduct')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-row pt-3">
                   <div class="form-group col-md-6">
@@ -30,15 +30,16 @@
                   <div class="pt-3">
                     <input name="image" class="form-control form-control" id="formFileLg" type="file">
                   </div>
-                  <div class="form-row pt-3">
-                    <select  name="product_approval" class="custom-select" >
+
+                  {{-- <div class="form-row pt-3">
+                     <select  name="category_id'" class="custom-select" >
                         <option value="" selected>Categories</option>
                         @foreach ($categoriesP as $category)
-                        <option name='category_id' value="">{{$category->category_name}}</option>
+                        <option  value="{{$category->id}}">{{$category->category_name}}</option>
                         @endforeach
-
                     </select>
-                </div>
+                </div> --}}
+
                 <div class="form-row pt-3">
                     <select  name="product_approval" class="custom-select" >
                         <option value="" selected>Product Approval</option>

@@ -9,9 +9,17 @@ use Illuminate\Database\Eloquent\Model;
 class Products extends Model
 {
     use HasFactory;
-    public function getCategory()
+
+    protected $table = 'products';
+
+   /**
+     * Get the category that owns the Products
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function insertCategory()
     {
-        return $this->hasOne(related: Category::class, foreignKey: 'product_id', localKey: 'id');
+        return $this->belongsTo(category::class, 'category_id');
     }
 }
 

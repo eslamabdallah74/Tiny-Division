@@ -11,13 +11,14 @@
             <div class="note">
                 <p>Edit Category</p>
             </div>
-            <form method="POST"  action="{{asset('dashboard/Create/cCategory')}}">
+            <form method="POST"  action="{{asset('dashboard/categories')}}">
                 @csrf
+                <input type="hidden" name="id" value="{{$category->id}}">
               <div class="form-content">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input name="category_name" type="text" class="form-control" placeholder=" Name *" value=""/>
+                            <input name="category_name" type="text" class="form-control" placeholder=" Name *" value="{{$category->category_name}}"/>
                         </div>
                     </div>
                 </div>

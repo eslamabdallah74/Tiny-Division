@@ -25,7 +25,8 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard\Create\cCategory');
+
     }
 
     /**
@@ -84,7 +85,7 @@ class CategoriesController extends Controller
      * @param  \App\Models\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, category $category)
+    public function update(Request $request)
     {
          // Validate database
 
@@ -94,13 +95,12 @@ class CategoriesController extends Controller
 
             ]
         );
-
             // Insert new user into databasex
-            $insert_category = new category;
-            $insert_category->category_name  = $request->category_name;
-            $insert_category->save();
+            $update_category = category::find($request->id);
+            $update_category->category_name  = $request->category_name;
+            $update_category->update();
 
-            return redirect('dashboard\categories');
+            return redirect('dashboard/categories');
     }
 
     /**
