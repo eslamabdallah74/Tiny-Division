@@ -16,11 +16,15 @@ class DashboredController extends Controller
         $last3users = User::orderBy('id','DESC')->limit(3)->get();
         $allUsers   = User::all();
 
+        $last3gateory    = category::orderBy('id','DESC')->limit(3)->get();
+        $allGategories   = category::all();
 
         $last3products = Products::orderBy('id','DESC')->limit(3)->get();
         $allproducts   = Products::all();
 
-        return view('dashboard.welcome', compact('last3users','allUsers','last3products','allproducts'));
+
+
+        return view('dashboard.welcome', compact('last3users','allUsers','last3products','allproducts','last3gateory','allGategories'));
 
     }
 }

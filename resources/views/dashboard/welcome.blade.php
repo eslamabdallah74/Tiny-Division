@@ -20,7 +20,7 @@
                   <tr>
                     <th scope="row">Number of</th>
                     <td>{{$allUsers->count()}}</td>
-                    <td>2</td>
+                    <td>{{$allGategories->count()}}</td>
                     <td>{{$allproducts->count()}}</td>
                     <td>4</td>
                   </tr>
