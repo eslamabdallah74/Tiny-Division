@@ -13,6 +13,4 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .vue()
-    .sass('resources/sass/main.scss', 'public/css/main')
-    .sass('resources/sass/homepage.scss', 'public/css/homepage');
-
+    .sass('resources/sass/app.scss', 'public/css');

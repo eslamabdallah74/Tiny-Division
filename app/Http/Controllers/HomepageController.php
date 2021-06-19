@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Homepage;
-use App\Models\User;
+use App\Models\Products;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class HomepageController extends Controller
@@ -15,8 +16,11 @@ class HomepageController extends Controller
      */
     public function index()
     {
-        $users = User::all();// get all the records from the database and order them
-        return view('dashboard\users', compact('users'));
+        $Products        = Products::orderBy('id','ASC')->limit(4)->get();
+        $TwoProducts     = Products::orderBy('id','DESC')->limit(2)->where('category_id', 2)->get();
+        $NewArrivals     = Products::orderBy('id','DESC')->limit(6)->where('category_id', 1)->get();
+        $Category        = Category::all();
+        return view('welcome' , compact('Products','TwoProducts','NewArrivals','Category'));
     }
 
     /**

@@ -47,9 +47,6 @@
                            <a class="nav-item nav-link" href="shoes.html">Shoes</a>
                            <a class="nav-item nav-link" href="racing boots.html">Racing Boots</a>
                            <a class="nav-item nav-link" href="contact.html">Contact</a>
-                           <a class="nav-item nav-link" href="contact.html">Login</a>
-
-
                         </div>
                     </div>
                     </nav>
@@ -58,6 +55,7 @@
 		</div>
 
 {{-- Start page content --}}
+
 <main>
     @yield('content')
 </main>

@@ -17,15 +17,14 @@ class ProductsSeeder extends Seeder
     {
 
         $faker = Faker::create();
-        foreach (range(1,2) as $value) {
+        foreach (range(1,16) as $value) {
             DB::table('products')->insert(
                 [
-                  'product_name'            => $faker->name,
+                  'product_name'            => $faker->streetName,
                   'product_description'     => $faker->realText($maxNbChars = 200, $indexSize = 2),
-                  'product_approval'          => 0,
+                  'product_approval'        => 0,
                   'product_img'             => $faker->imageUrl($width = 200, $height = 200),
-                  'product_price'           => $faker->randomDigit,
-                  'created_at'              => $faker->date,
+                  'product_price'           => $faker->numberBetween($min = 100, $max = 500),
 
                 ]
            );

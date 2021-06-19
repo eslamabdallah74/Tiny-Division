@@ -16,7 +16,7 @@ class CategoriesSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        foreach (range(1,5) as $value) {
+        foreach (range(1,4) as $value) {
             DB::table('categories')->insert(
                 [
                   'category_name'  => $faker->company,
