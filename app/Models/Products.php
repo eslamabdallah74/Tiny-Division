@@ -6,6 +6,8 @@ use App\Http\Controllers\CategoriesController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
+use App\Models\Order;
+
 
 class Products extends Model
 {
@@ -21,6 +23,11 @@ class Products extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+     public function productOrder()
+    {
+        return $this->hasMany(Order::class, 'product_id');
+
     }
 }
 

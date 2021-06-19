@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProductsController;
 use App\Models\Users;
@@ -25,10 +26,7 @@ Route::view('dashboard/products', 'dashboard/products')->middleware('auth');
 Route::view('dashboard/orders', 'dashboard/orders')->middleware('auth');
 Route::view('dashboard/Create/cUser', 'dashboard/Create/cUser')->middleware('auth');
 
-// Route::get('/Products/{id}', function($id){
-//  $Products = \App\Models\Products::findorFail($id);
-//  dd($Products->insertCategory);
-// });
+
 
 
 // Users Controller
@@ -57,6 +55,9 @@ Route::post('dashboard/products', [ProductsController::class,'update'])->middlew
 Route::delete('dashboard/delete/{id}',[ProductsController::class],'destroy');
 
 
+//Order controller
+Route::resource('dashboard/order', OrderController::class)->middleware('auth');
+Route::get('dashboard/Create/cOrder/', [OrderController::class,'create'])->middleware('auth');
 
 
 
