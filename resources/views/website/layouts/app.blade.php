@@ -25,6 +25,9 @@
  <link rel="stylesheet" href="{{asset("css/website/owl.carousel.min.css")}}">
  <link rel="stylesheet" href="{{asset("css/website/owl.theme.default.min.css")}}">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+ <main>
+    @yield('Contact-css')
+</main>
 </head>
 <body>
     {{-- Navbar --}}
@@ -42,11 +45,11 @@
                         </button>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
-                           <a class="nav-item nav-link" href="index.html">Home</a>
+                           <a class="nav-item nav-link" href="{{asset('/')}}">Home</a>
                            <a class="nav-item nav-link" href="collection.html">Collection</a>
                            <a class="nav-item nav-link" href="shoes.html">Shoes</a>
                            <a class="nav-item nav-link" href="racing boots.html">Racing Boots</a>
-                           <a class="nav-item nav-link" href="contact.html">Contact</a>
+                           <a class="nav-item nav-link" href="{{asset('Contact')}}">Contact</a>
                         </div>
                     </div>
                     </nav>

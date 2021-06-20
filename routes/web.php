@@ -74,3 +74,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::view('/' , 'welcome');
 Route::get('/', [HomepageController::class,'index']);
 
+
+Route::view('Contact' , 'contact');
