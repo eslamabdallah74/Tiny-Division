@@ -25,6 +25,16 @@
  <link rel="stylesheet" href="{{asset("css/website/owl.carousel.min.css")}}">
  <link rel="stylesheet" href="{{asset("css/website/owl.theme.default.min.css")}}">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+ <link rel="stylesheet" href="/node_modules/owl.carousel/dist/assets/owl.carousel.min.css" />
+ <link rel="stylesheet" href="/bower_components/owl.carousel/dist/assets/owl.carousel.min.css" />
+
+
+ <main>
+    @yield('Collection-css')
+</main>
+<main>
+    @yield('oneProduct-css')
+</main>
  <main>
     @yield('Contact-css')
 </main>
@@ -36,7 +46,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-3">
-					<div class="logo"><a href="#"><img src="images/logo.png"></a></div>
+					<div class="logo"><a href="#"><img src="{{asset('images/logo.png')}}"></a></div>
 				</div>
 				<div class="col-sm-9">
 					<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -46,9 +56,8 @@
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
                            <a class="nav-item nav-link" href="{{asset('/')}}">Home</a>
-                           <a class="nav-item nav-link" href="collection.html">Collection</a>
-                           <a class="nav-item nav-link" href="shoes.html">Shoes</a>
-                           <a class="nav-item nav-link" href="racing boots.html">Racing Boots</a>
+                           <a class="nav-item nav-link" href="{{asset('/Collection')}}">Collection</a>
+                           <a class="nav-item nav-link" href="{{asset('/racingBoots')}}" ">Racing Boots</a>
                            <a class="nav-item nav-link" href="{{asset('Contact')}}">Contact</a>
                         </div>
                     </div>
@@ -70,21 +79,21 @@
         <div class="mail_section">
             <div class="row">
                 <div class="col-sm-6 col-lg-2">
-                    <div><a href="#"><img src="images/footer-logo.png"></a></div>
+                    <div><a href="#"><img src="{{asset("images/favicon.png")}}" ></a></div>
                 </div>
                 <div class="col-sm-6 col-lg-2">
-                    <div class="footer-logo"><img src="images/phone-icon.png"><span class="map_text">(71) 1234567890</span></div>
+                    <div class="footer-logo"><img src="{{asset("images/phone-icon.png")}}"><span class="map_text">(71) 1234567890</span></div>
                 </div>
                 <div class="col-sm-6 col-lg-3">
-                    <div class="footer-logo"><img src="images/email-icon.png"><span class="map_text">Demo@gmail.com</span></div>
+                    <div class="footer-logo"><img src="{{asset("images/email-icon.png")}}"><span class="map_text">Demo@gmail.com</span></div>
                 </div>
                 <div class="col-sm-6 col-lg-3">
                     <div class="social_icon">
                         <ul>
-                            <li><a href="#"><img src="images/fb-icon.png"></a></li>
-                            <li><a href="#"><img src="images/twitter-icon.png"></a></li>
-                            <li><a href="#"><img src="images/in-icon.png"></a></li>
-                            <li><a href="#"><img src="images/google-icon.png"></a></li>
+                            <li><a href="#"><img src="{{asset("images/fb-icon.png")}}"></a></li>
+                            <li><a href="#"><img src="{{asset("images/twitter-icon.png")}}"></a></li>
+                            <li><a href="#"><img src="{{asset("images/in-icon.png")}}"></a></li>
+                            <li><a href="#"><img src="{{asset("images/google-icon.png")}}"></a></li>
                         </ul>
                     </div>
                 </div>
@@ -98,7 +107,7 @@
                 </div>
                 <div class="col-sm-4 col-lg-2">
                     <h2 class="shop_text">Address </h2>
-                    <div class="image-icon"><img src="images/map-icon.png"><span class="pet_text">No 40 Baria Sreet 15/2 NewYork City, NY, United States.</span></div>
+                    <div class="image-icon"><img src="{{asset("images/map-icon.png")}}"><span class="pet_text">No 40 Baria Sreet 15/2 NewYork City, NY, United States.</span></div>
                 </div>
                 <div class="col-sm-4 col-md-6 col-lg-3">
                     <h2 class="shop_text">Our Company </h2>
@@ -151,6 +160,10 @@
  <!-- javascript -->
  <script src="{{asset("js/website/owl.carousel.js")}}"></script>
  <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+ <script src="/node_modules/jquery/dist/jquery.js"></script>
+<script src="/node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
+<script src="{{asset("js/website/MyJavaScript.js")}}"></script>
+
  <script>
     $(document).ready(function(){
     $(".fancybox").fancybox({

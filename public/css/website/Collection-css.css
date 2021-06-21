@@ -1,0 +1,51 @@
+.hide{
+    display: none;
+}
+.show {
+    display: block;
+}
+
+.collection_text{
+    margin-top: 100px;
+    width: 50%;
+    border-radius: 0 40px 40px 0;
+}
+/* Ul */
+ul.MyMenu{
+    border: 1px solid black;
+}
+ul.MyMenu li {
+    margin: 0 2%;
+    display: inline-block;
+    font-size: 4ch;
+}
+ul.MyMenu li span ,#all {
+    color: black;
+    cursor: pointer;
+}
+/* Products Edit */
+.holder{
+    background-color:white ;
+    padding: 5%;
+    margin: 4% 0;;
+    border-radius: 20px;
+}
+#Product-name , #Product-desc{
+    color: black;
+}
+#Product-name {
+    font-weight: bold;
+}
+#Product-price {
+    color: #FD4A56;
+}
+#Product-desc {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+#Product-img img{
+width: 50%;
+}
+#Product-time{
+    color: 00000082;
+}

@@ -74,5 +74,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::view('/' , 'welcome');
 Route::get('/', [HomepageController::class,'index']);
 
+Route::view('Collection' , 'Collection');
+Route::get('Collection', [App\Http\Controllers\CollectionsController::class,'index']);
+
+Route::view('oneProduct' , 'oneProduct');
+Route::get('oneProduct/{id}', [App\Http\Controllers\OneProduct::class,'index']);
+
+Route::view('racingBoots' , 'racingBoots');
+
 
 Route::view('Contact' , 'contact');
+
+
+

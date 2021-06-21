@@ -1,6 +1,6 @@
 @extends('website.layouts.app')
 
-@section('title','Home') {{-- Title --}}
+@section('title','Tiny Division') {{-- Title --}}
 
 
 @section('content')
@@ -38,8 +38,8 @@
 							<h1 class="banner_text">{{$Product->product_price}}$</h1>
 							<h1 class="mens_text"><strong>{{$Product->product_name}}</strong></h1>
 							<p class="lorem_text">{{$Product->product_description}}</p>
-							<button class="buy_bt">Buy Now</button>
-							<button class="more_bt">See More</button>
+							<button class="buy_bt"><a style='color:white'  href="{{asset('oneProduct/'.$Product->id)}}">Buy</a></button>
+							<button class="more_bt"><a style='color:#f12a47' href="{{asset('oneProduct/'.$Product->id)}}">See More</a></button>
 						</div>
 					</div>
 					<div class="col-sm-5">
@@ -80,6 +80,7 @@
     	    				<div class="dolar_text">$<strong style="color: #f12a47;">{{$OneProduct->product_price}}</strong> </div>
     	    				<div class="star_icon">
     	    					<ul>
+
     	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
     	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
     	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
@@ -89,7 +90,10 @@
     	    				</div>
     	    			</div>
                         @if ($key == 0)
-    	    			<button class="seemore_bt">See More</button>
+                        <button class="buy_bt"><a style='color:white'  href="{{asset('oneProduct/'.$OneProduct->id)}}">Buy</a></button>
+                        @endif
+                        @if ($key == 1)
+                        <button class="buy_bt"><a style='color:white'  href="{{asset('oneProduct/'.$OneProduct->id)}}">Buy</a></button>
                         @endif
     	    		</div>
                     @endforeach
@@ -112,9 +116,8 @@
     					<div class="shoes-img3"><img src="images/shoes-img3.png"></div>
     				</div>
     				<div class="col-md-4">
-    					<div class="sale_text"><strong>Sale <br><span style="color: #0a0506;">JOGING</span> <br>SHOES</strong></div>
+    					<div class="sale_text"><strong>Sale <br><span style="color: #0a0506;">Yomi</span> <br>SHOES</strong></div>
     					<div class="number_text"><strong>$ <span style="color: #0a0506">100</span></strong></div>
-    					<button class="seemore">See More</button>
     				</div>
     			</div>
     		</div>
@@ -139,11 +142,31 @@
     					<div class="star_text">
     						<div class="left_part">
     							<ul>
+                                    @if ($NewArrival->rating == 1)
+    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
+                                    @endif
+                                    @if ($NewArrival->rating == 2)
+    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
+                                    <li><a href="#"><img src="images/star-icon.png"></a></li>
+                                    @endif
+                                    @if ($NewArrival->rating == 3)
+    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
+                                    <li><a href="#"><img src="images/star-icon.png"></a></li>
+    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
+                                    @endif
+                                    @if ($NewArrival->rating == 4)
+    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
+                                    <li><a href="#"><img src="images/star-icon.png"></a></li>
     	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
     	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
+                                    @endif
+                                    @if ($NewArrival->rating == 5)
+    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
+                                    <li><a href="#"><img src="images/star-icon.png"></a></li>
     	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
     	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
-    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
+                                    <li><a href="#"><img src="images/star-icon.png"></a></li>
+                                    @endif
     	    					</ul>
     						</div>
     						<div class="right_part">
@@ -156,7 +179,7 @@
                 @endforeach
     		</div>
     		<div class="buy_now_bt">
-    			<button class="buy_text">Buy Now</button>
+            <button class="btn btn-info" ><a style="color:white" href="{{asset('/Collection')}}">Buy Now</a></button>
     		</div>
     	</div>
     </div>
