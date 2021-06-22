@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('navbar-style')
+    <link rel="stylesheet" href="{{asset('css/navbar/navbar.css')}}">
+    <link rel="stylesheet" href="{{asset('css/login/login.css')}}">
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

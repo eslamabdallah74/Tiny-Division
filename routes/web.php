@@ -79,6 +79,8 @@ Route::get('Collection', [App\Http\Controllers\CollectionsController::class,'ind
 
 Route::view('oneProduct' , 'oneProduct');
 Route::get('oneProduct/{id}', [App\Http\Controllers\OneProduct::class,'index']);
+Route::post('oneProduct/{id}', [App\Http\Controllers\OneProduct::class,'store']);
+
 
 Route::view('racingBoots' , 'racingBoots');
 
