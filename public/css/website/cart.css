@@ -1,0 +1,18 @@
+.cart{
+    margin: 50px 0;
+}
+.cart .card-body{
+    margin: 50px 0;
+}
+.cart .card-body img{
+    max-height: 100px;
+    max-width: 100px;
+}
+.cart button{
+    background-color: #ff4e5b;
+    border-color: #ff4e5b;
+}
+.cart button:hover{
+    background-color: #ff4e5b;
+    border-color: #ff4e5b;
+}
