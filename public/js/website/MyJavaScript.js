@@ -20,3 +20,10 @@ $("#4").on('click',function(){
     $("#target-suits").removeClass('hide').siblings('').addClass('hide');
   });
 
+// Product form
+$("#BuyToShowForm").on('click',function(){
+    $("#BuyForm").removeClass('hide');
+  });
+  $("#Close-form").on('click',function(){
+    $("#BuyForm").addClass('hide');
+  });

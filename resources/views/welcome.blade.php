@@ -79,13 +79,32 @@
     	    				<p class="sport_text">{{$OneProduct->product_name}}</p>
     	    				<div class="dolar_text">$<strong style="color: #f12a47;">{{$OneProduct->product_price}}</strong> </div>
     	    				<div class="star_icon">
-    	    					<ul>
-
+                            <ul>
+                                    @if ($OneProduct->rating == 1)
+                                    <li><a href="#"><img src="images/star-icon.png"></a></li>
+                                    @endif
+                                    @if ($OneProduct->rating == 2)
+    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
+                                    <li><a href="#"><img src="images/star-icon.png"></a></li>
+                                    @endif
+                                    @if ($OneProduct->rating == 3)
+    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
+                                    <li><a href="#"><img src="images/star-icon.png"></a></li>
+    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
+                                    @endif
+                                    @if ($OneProduct->rating == 4)
+    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
+                                    <li><a href="#"><img src="images/star-icon.png"></a></li>
     	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
     	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
+                                    @endif
+                                    @if ($OneProduct->rating == 5)
+    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
+                                    <li><a href="#"><img src="images/star-icon.png"></a></li>
     	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
     	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
-    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
+                                    <li><a href="#"><img src="images/star-icon.png"></a></li>
+                                    @endif
     	    					</ul>
     	    				</div>
     	    			</div>
@@ -135,6 +154,7 @@
     	<div class="container">
     		<div class="row">
                 @foreach ($NewArrivals as $NewArrival)
+                <a href="{{asset('oneProduct/'.$NewArrival->id)}}">
     			<div class="col-sm-4">
     				<div class="best_shoes">
     					<p class="best_text">{{$NewArrival->product_name}}</p>
@@ -143,7 +163,11 @@
     						<div class="left_part">
     							<ul>
                                     @if ($NewArrival->rating == 1)
-    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
+    	    						<i class="far fa-star"></i>
+									<i class="far fa-star"></i>
+									<i class="far fa-star"></i>
+									<i class="far fa-star"></i>
+									<i class="far fa-star"></i>
                                     @endif
                                     @if ($NewArrival->rating == 2)
     	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
@@ -173,6 +197,7 @@
     							<div class="shoes_price">$ <span style="color: #ff4e5b;">{{$NewArrival->product_price}}</span></div>
     						</div>
     					</div>
+                        </a>
     				</div>
     			</div>
                 {{-- End --}}
