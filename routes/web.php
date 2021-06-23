@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\OrderController;
@@ -27,8 +28,9 @@ Route::view('dashboard/products', 'dashboard/products')->middleware('auth');
 Route::view('dashboard/orders', 'dashboard/orders')->middleware('auth');
 Route::view('dashboard/Create/cUser', 'dashboard/Create/cUser')->middleware('auth');
 
+//Cart
 
-
+Route::resource('my-cart', CartController::class)->middleware('auth');
 
 // Users Controller
 Route::resource('dashboard/users', UsersController::class)->middleware('auth');

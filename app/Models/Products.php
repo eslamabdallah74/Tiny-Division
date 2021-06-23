@@ -20,6 +20,11 @@ class Products extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    /**
+     * The roles that belong to the Products
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
