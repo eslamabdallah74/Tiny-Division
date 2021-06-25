@@ -16,5 +16,6 @@ class Cart extends Model
     {
         return $this->belongsToMany(Products::class,'cart_products');
     }
+
     use HasFactory;
 }

@@ -27,5 +27,6 @@ class CartProduct extends Model
     {
         return $this->belongsTo(Products::class);
     }
+ 
     use HasFactory;
 }

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Products;
+use App\Models\ProductRivew;
 use App\Models\OrderProduct;
+
 
 
 class OneProduct extends Controller
@@ -12,7 +14,8 @@ class OneProduct extends Controller
     public function index($id)
     {
         $OneProduct = Products::find($id);
-        return view('oneProduct', compact('OneProduct'));
+        $Rivews = ProductRivew::where('product_id' , $id)->get();
+        return view('oneProduct', compact('OneProduct','Rivews'));
 
     }
     public function store(Request $request)

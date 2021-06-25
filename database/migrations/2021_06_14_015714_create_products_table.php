@@ -19,9 +19,8 @@ class CreateProductsTable extends Migration
             $table->string('product_description');
             $table->boolean('product_approval');
             $table->string('product_price');
+            $table->integer('product_Qty');
             $table->string('product_img')->nullable();
-            $table->string('review')->nullable();
-            $table->integer('rating')->nullable();
             $table->bigInteger('category_id')->nullable()->unsigned();
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductRivewController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProductsController;
+use App\Models\ProductRivew;
 use App\Models\Users;
 use Illuminate\Support\Facades\Route;
 
@@ -26,11 +29,11 @@ Route::get('/dashboard', [App\Http\Controllers\Dashbored\DashboredController::cl
 Route::view('dashboard/users', 'dashboard/users')->middleware('auth');
 Route::view('dashboard/products', 'dashboard/products')->middleware('auth');
 Route::view('dashboard/orders', 'dashboard/orders')->middleware('auth');
+Route::view('dashboard/contacts', 'dashboard/contacts')->middleware('auth');
 Route::view('dashboard/Create/cUser', 'dashboard/Create/cUser')->middleware('auth');
 
-//Cart
 
-Route::resource('my-cart', CartController::class)->middleware('auth');
+
 
 // Users Controller
 Route::resource('dashboard/users', UsersController::class)->middleware('auth');
@@ -62,6 +65,10 @@ Route::delete('dashboard/delete/{id}',[ProductsController::class],'destroy');
 Route::resource('dashboard/order', OrderController::class)->middleware('auth');
 Route::get('dashboard/Create/cOrder/', [OrderController::class,'create'])->middleware('auth');
 
+// Contact us
+Route::resource('dashboard/contacts', ContactController::class)->middleware('auth');
+Route::post('dashboard/contacts', [ContactController::class,'store'])->middleware('auth');
+Route::delete('dashboard/contacts/{id}',[ContactController::class],'destroy');
 
 
 
@@ -82,6 +89,13 @@ Route::get('Collection', [App\Http\Controllers\CollectionsController::class,'ind
 Route::view('oneProduct' , 'oneProduct');
 Route::get('oneProduct/{id}', [App\Http\Controllers\OneProduct::class,'index']);
 Route::post('oneProduct/{id}', [App\Http\Controllers\OneProduct::class,'store']);
+
+//Cart
+Route::resource('my-cart', CartController::class)->middleware('auth');
+Route::post('my-cart', [CartController::class,'store'])->middleware('auth');
+
+// Rivew
+Route::resource('oneProduct', ProductRivew::class)->middleware('auth');
 
 
 Route::view('racingBoots' , 'racingBoots');

@@ -20,6 +20,8 @@ class CartController extends Controller
         $CartProducts   = CartProduct::where('user_id',Auth()->id())
         ->where('cart_id',$userCart->id)
         ->get();
+
+
         return view('cart',compact('userCart','CartProducts'));
     }
 
@@ -28,9 +30,10 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($request)
     {
-        //
+
+
     }
 
     /**
@@ -41,7 +44,19 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate(
+            [
+                'QTY'          => 'required|number',
+            ]
+        );
+
+            // Insert new user into databasex
+            $insert_product = new CartProduct;
+            $insert_product->product_id  = $request->pproduct_id;
+
+
+            $insert_product->save();
+            return redirect('my-cart');
     }
 
     /**
@@ -52,7 +67,7 @@ class CartController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
