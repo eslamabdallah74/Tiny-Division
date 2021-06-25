@@ -67,23 +67,38 @@
             <h6 class="title-attr"><small>CANTIDAD</small></h6>
         </div>
         <!-- Add product to cart -->
-        <form method="POST"  action="{{asset('my-cart')}}">
-        @csrf
-        <input type="hidden" name="product_id" value="{{$OneProduct->id}}">
+        <form method="POST" action="{{ route('my-cart.store') }}">
+            @csrf
+            <input type="hidden" name="product_id" value="{{ $OneProduct->id }}">
                  <!-- Botones de compra -->
-                 <div class="section" style="padding-bottom:20px;">
-                    @if (Auth::check())
-                    <div class="buy-product"> <button class="btn btn-success" value="Submit" id='BuyToShowForm' style="margin-bottom: 20px;">Add To Cart</button> </div>
-                    @endif
-                    @if (!Auth::check())
-                    <div class="Register-To-Buy"> <button class="btn btn-success" style="margin-bottom: 20px;"> <a href="{{url('login')}}">Login To Buy</a> </button> </div>
-                    <div class="Register-To-Buy"> <button class="btn btn-primary" style="margin-bottom: 20px;"> <a href="{{url('register')}}">Register To Buy</a> </button> </div>
-                    @endif
-
-                    <h6><a href="#"><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span> Agregar a lista de deseos</a></h6>
+            <div class="section" style="padding-bottom:20px;">
+                @if (Auth::check())
+                    <div class="buy-product">
+                        <button class="btn btn-success" value="submit" id='BuyToShowForm' style="margin-bottom: 20px;">
+                            Add To Cart
+                        </button>
+                    </div>
+                @endif
+                @if (!Auth::check())
+                <div class="Register-To-Buy">
+                    <button class="btn btn-success" style="margin-bottom: 20px;">
+                        <a href="{{url('login')}}">Login To Buy</a>
+                    </button>
+                    </div>
+                <div class="Register-To-Buy">
+                    <button class="btn btn-primary" style="margin-bottom: 20px;">
+                        <a href="{{url('register')}}">Register To Buy</a>
+                    </button>
                 </div>
+                @endif
+                <h6>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span>
+                         Agregar a lista de deseos
+                    </a>
+                </h6>
             </div>
-            </form>
+        </form>
     </div>
 
 </div>

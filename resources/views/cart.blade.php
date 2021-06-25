@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{asset("css/website/cart.css")}}">
 @endsection
 
-@section('title','Contact') {{-- Title --}}
+@section('title','Cart') {{-- Title --}}
 
 @section('content')
 <div class="container">
@@ -31,8 +31,8 @@
                                             <td><img class="img-thumbnail" src="{{ asset('uploads/products/'.$CartProduct->product->product_img) }}" /> </td>
                                             <td>{{ $CartProduct->product->product_name }}</td>
                                             <td>{{ $CartProduct->product->product_Qty }}</td>
-                                            <td><input class="form-control" type="text" value="1" /></td>
-                                            <td class="text-right">{{$total = $CartProduct->price }} $</td>
+                                            <td><input class="form-control" type="text" value="{{ $CartProduct->Qty }}" /></td>
+                                            <td class="text-right">{{ $CartProduct->price }} $</td>
                                             <td class="text-right"><button class="btn btn-sm btn-danger"> X </button> </td>
                                         </tr>
                                     @endforeach
@@ -58,7 +58,7 @@
                                         <td></td>
                                         <td></td>
                                         <td><strong>Total</strong></td>
-                                        <td class="text-right"><strong>{{$CartProduct->total}} $</strong></td>
+                                        <td class="text-right"><strong>{{ $userCart->total }} $</strong></td>
                                     </tr>
                                 </tbody>
                             </table>

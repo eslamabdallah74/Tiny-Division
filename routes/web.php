@@ -92,7 +92,6 @@ Route::post('oneProduct/{id}', [App\Http\Controllers\OneProduct::class,'store'])
 
 //Cart
 Route::resource('my-cart', CartController::class)->middleware('auth');
-Route::post('my-cart', [CartController::class,'store'])->middleware('auth');
 
 // Rivew
 Route::resource('oneProduct', ProductRivew::class)->middleware('auth');

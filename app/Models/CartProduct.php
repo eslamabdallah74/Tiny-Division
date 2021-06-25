@@ -7,11 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class CartProduct extends Model
 {
-    // protected $table = 'cart_products';
-    // protected $fillable =[
-    //     'user_id',
-    //     'total'
-    // ];
+    protected $table = 'cart_products';
+    protected $fillable =[
+         'product_id',
+         'user_id',
+         'total',
+         'Qty',
+         'cart_id',
+         'price'
+     ];
     /**
      * Get all of the comments for the CartProduct
      *
@@ -27,6 +31,27 @@ class CartProduct extends Model
     {
         return $this->belongsTo(Products::class);
     }
- 
+
     use HasFactory;
+
+    public static function rules()//Validation
+    {
+        $rules = [
+            'product_id' => 'integer|exists:products,id'
+        ];
+
+        return $rules;
+    }
+    public static function credentials($request,$product)//Store and Update
+    {
+        $credentials = [
+            'product_id'    => $request->product_id,
+            'user_id'       => Auth()->id(),
+            'Qty'           => 1,
+            'price'         => $product->product_price,
+            'total'         => $product->product_price
+        ];
+
+        return $credentials;
+    }
 }

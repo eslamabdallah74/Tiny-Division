@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\CartProduct;
+use App\Models\Products;
+use DB;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -44,19 +46,29 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate(
-            [
-                'QTY'          => 'required|number',
-            ]
-        );
+        $rules          = CartProduct::rules($request);
+        $request->validate($rules);
+        $product        = Products::findOrFail($request->product_id);
+        // Check if user has already cart
+        $cart           = Cart::where('user_id',Auth()->id())
+        ->first();
+        if($cart==NULL){// User does not have cart
+            $newCart    = Cart::create([
+                'user_id'   => Auth()->id(),
+                'total'     => $product->product_price
+            ]);
+            $credentials    = CartProduct::credentials($request,$product);
+            $credentials['cart_id'] = $newCart->id;
+            $CART           = CartProduct::create($credentials);
+        }else{//User already have cart
+            $credentials    = CartProduct::credentials($request,$product);
+            $credentials['cart_id'] = $cart->id;
+            $CART           = CartProduct::create($credentials);
+            $this->updateTotal($cart);
+        }
 
-            // Insert new user into databasex
-            $insert_product = new CartProduct;
-            $insert_product->product_id  = $request->pproduct_id;
 
-
-            $insert_product->save();
-            return redirect('my-cart');
+        return redirect()->route('my-cart.index');
     }
 
     /**
@@ -68,6 +80,15 @@ class CartController extends Controller
     public function show($id)
     {
 
+    }
+    public function updateTotal($Cart)//Update cart When (ADD produc,Delete Product,Edit Qty of the product)
+    {
+        $total  = CartProduct::where('cart_id',$Cart->id)
+        ->selectRaw('SUM(total) as total')
+        ->first()
+        ->total;
+        $Cart->total = $total;
+        $Cart->save();
     }
 
     /**

@@ -20,6 +20,8 @@ class CategoriesSeeder extends Seeder
             DB::table('categories')->insert(
                 [
                   'category_name'  => $faker->company,
+                  'updated_at'     => now(),
+                  'created_at'     => now(),
                 ]
            );
         }

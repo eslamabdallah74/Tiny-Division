@@ -41,6 +41,8 @@ class ProductsSeeder extends Seeder
                   'product_price'           => $faker->numberBetween(100,5000),
                   'product_Qty'             => $faker->numberBetween(50,300),
                   'category_id'             => $categories->random()->id,
+                  'updated_at'              => now(),
+                  'created_at'              => now(),
                 ]
            );
         }
