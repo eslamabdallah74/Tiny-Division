@@ -33,16 +33,28 @@
                                             <td>{{ $CartProduct->product->product_Qty }}</td>
                                             <td><input class="form-control" type="text" value="{{ $CartProduct->Qty }}" /></td>
                                             <td class="text-right">{{ $CartProduct->price }} $</td>
-                                            <td class="text-right"><button class="btn btn-sm btn-danger"> X </button> </td>
-                                        </tr>
+                                            <td>
+                                                <a class="btn btn-danger" href="{{ route('users.index') }}"
+                                                onclick="event.preventDefault();
+                                                document.getElementById(
+                                                'delete-form-{{$CartProduct->id}}').submit();">
+                                            Remove
+                                                </a>
+                                            </td>
+                                            <form id="delete-form-{{$CartProduct->id}}"
+                                            + action="{{route('my-cart.destroy', $CartProduct->id)}}"
+                                            method="post">
+                                            @csrf @method('DELETE')
+                                            </form>
+                                         </tr>
                                     @endforeach
-                                    <tr>
+                                         <tr>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td>Sub-Total</td>
-                                        <td class="text-right">{{ $CartProduct->price}}</td>
+                                        <td class="text-right">{{ $userCart->total }} $</td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -50,7 +62,7 @@
                                         <td></td>
                                         <td></td>
                                         <td>Shipping</td>
-                                        <td class="text-right">6,00 $</td>
+                                        <td class="text-right">20,00$</td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -58,16 +70,26 @@
                                         <td></td>
                                         <td></td>
                                         <td><strong>Total</strong></td>
-                                        <td class="text-right"><strong>{{ $userCart->total }} $</strong></td>
+                                        <td class="text-right"><strong>{{ $userCart->total + 20}} $</strong></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    {{-- Validate error msg --}}
+                               @if ($errors->any())
+                               <div class="alert alert-danger pt-10">
+                                   <ul>
+                                       @foreach ($errors->all() as $error)
+                                           <li>{{ $error }}</li>
+                                       @endforeach
+                                   </ul>
+                               </div>
+                           @endif
                     <div class="col mb-2">
                         <div class="row">
                         <div class="col-sm-12 col-md-6 text-right">
-                                <button class="btn btn-lg btn-block btn-success text-uppercase">Continue Shopping</button>
+                                <button class="btn btn-lg btn-block btn-success text-uppercase"><a href="{{url('/')}}">Continue Shopping</a></button>
                             </div>
                             <div class="col-sm-12 col-md-6 text-right">
                                 <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>

@@ -7,6 +7,8 @@ use App\Models\CartProduct;
 use App\Models\Products;
 use DB;
 use Illuminate\Http\Request;
+use Session;
+
 
 class CartController extends Controller
 {
@@ -17,14 +19,14 @@ class CartController extends Controller
      */
     public function index()
     {
-        $userCart       = Cart::where('user_id',Auth()->id())
+        $userCart       = Cart::where('user_id', Auth()->id())
         ->first();
-        $CartProducts   = CartProduct::where('user_id',Auth()->id())
-        ->where('cart_id',$userCart->id)
+        $CartProducts   = CartProduct::where('user_id', Auth()->id())
+        ->where('cart_id', $userCart->id)
         ->get();
 
 
-        return view('cart',compact('userCart','CartProducts'));
+        return view('cart', compact('userCart', 'CartProducts'));
     }
 
     /**
@@ -34,8 +36,6 @@ class CartController extends Controller
      */
     public function create($request)
     {
-
-
     }
 
     /**
@@ -50,21 +50,29 @@ class CartController extends Controller
         $request->validate($rules);
         $product        = Products::findOrFail($request->product_id);
         // Check if user has already cart
-        $cart           = Cart::where('user_id',Auth()->id())
+        $cart           = Cart::where('user_id', Auth()->id())
         ->first();
-        if($cart==NULL){// User does not have cart
+        if ($cart==null) {// User does not have cart
             $newCart    = Cart::create([
                 'user_id'   => Auth()->id(),
                 'total'     => $product->product_price
             ]);
-            $credentials    = CartProduct::credentials($request,$product);
+            $credentials    = CartProduct::credentials($request, $product);
             $credentials['cart_id'] = $newCart->id;
             $CART           = CartProduct::create($credentials);
-        }else{//User already have cart
-            $credentials    = CartProduct::credentials($request,$product);
+        } else {//User already have cart
+            $credentials    = CartProduct::credentials($request, $product);
             $credentials['cart_id'] = $cart->id;
+            // Test 1
+            $SameProduct = CartProduct::where('user_id', Auth()->id())->where('product_id' , $product->id )->get();
+            if ($SameProduct->count() >= 1 ) {
+                return redirect()->route('my-cart.index')->withErrors('The Item Is Already Exist');
+            } else {
+            // Insert product into cart
             $CART           = CartProduct::create($credentials);
+            // update total price
             $this->updateTotal($cart);
+            }
         }
 
 
@@ -79,11 +87,10 @@ class CartController extends Controller
      */
     public function show($id)
     {
-
     }
     public function updateTotal($Cart)//Update cart When (ADD produc,Delete Product,Edit Qty of the product)
     {
-        $total  = CartProduct::where('cart_id',$Cart->id)
+        $total  = CartProduct::where('cart_id', $Cart->id)
         ->selectRaw('SUM(total) as total')
         ->first()
         ->total;
@@ -122,6 +129,11 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cart  = Cart::where('user_id', Auth()->id())
+        ->first();
+        $deleteProduct = CartProduct::findOrFail($id);
+        $deleteProduct->delete();
+        $this->updateTotal($cart);
+        return redirect()->route('my-cart.index');
     }
 }

@@ -104,7 +104,7 @@
 </div>
 <!-- reviews -->
 <!-- Add reviw -->
- <div class="">
+ <div class="container">
     <form method="POST"  action="{{asset('oneProduct')}}">
         @csrf
      <div class="row">
@@ -139,7 +139,7 @@
  </div>
 <!-- end add reviw -->
 <!-- show reviw -->
-<div class="">
+<div class="container">
     <div class="row">
         @foreach ($Rivews as $Rivew)
     <div class="reviews">
@@ -154,7 +154,7 @@
     <div class="col-md-9">
       <h4>My awesome review</h4>
       <div class="ratebox text-center" data-id="0" data-rating="5"></div>
-      <p class="review-text">My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. My awesome review. </p>
+      <p class="review-text">{{$Rivew->review}}</p>
         <div class="rating" style="color: yellow">
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
@@ -162,7 +162,7 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
         </div>
-      <small class="review-date">March 26, 2017</small>
+      <small class="review-date">{{Carbon\Carbon::parse($Rivew->created_at)->diffForHumans()}}</small>
     </div>
   </div>
 </div>
