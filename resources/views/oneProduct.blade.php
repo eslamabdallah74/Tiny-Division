@@ -10,7 +10,7 @@
 
 
 <div class="container">
-<div class="row mydot">
+    <div class="row mydot">
                     <div class="container">
                 <div class="row">
                 <a href="#" class="intro-banner-vdo-play-btn pinkBg" id="Close-form">
@@ -100,14 +100,14 @@
             </div>
         </form>
     </div>
-
+  </div>
 </div>
 <!-- reviews -->
 <!-- Add reviw -->
- <div class="container">
-    <form method="POST"  action="{{asset('oneProduct')}}">
+ <div class="">
+    <form action="{{route('rivew',$OneProduct->id)}}" method="POST">
         @csrf
-     <div class="row">
+     <div class="">
          <div class="add-reviw col-sm-12">
          <div class="form-group">
         <label for="exampleFormControlSelect1" id="rating-label">Rating</label>
@@ -120,27 +120,35 @@
             </select>
         </div>
             <div class="form-group">
-            <textarea name="review " class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Your Rivew"></textarea>
+            <textarea name="review" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Your Rivew"></textarea>
             </div>
-            <a href=""class='btn btn-info' type="submit">Send</a>
-              {{-- Validate error msg --}}
-              @if ($errors->any())
-              <div class="alert alert-danger pt-10">
-                  <ul>
-                      @foreach ($errors->all() as $error)
-                          <li>{{ $error }}</li>
-                      @endforeach
-                  </ul>
-              </div>
-          @endif
+            <button class="btn btn-success" value="submit" id='BuyToShowForm' style="margin-bottom: 20px;">
+            Send
+            </button>
          </div>
+
+         @if(session()->has('message'))
+         <div class="alert alert-success">
+             {{ session()->get('message') }}
+         </div>
+                 @endif
      </div>
    </form>
+                 {{-- Validate error msg --}}
+   @if ($errors->any())
+   <div class="alert alert-danger pt-10">
+       <ul>
+           @foreach ($errors->all() as $error)
+               <li>{{ $error }}</li>
+           @endforeach
+       </ul>
+   </div>
+@endif
  </div>
 <!-- end add reviw -->
 <!-- show reviw -->
-<div class="container">
-    <div class="row">
+<div class="">
+    <div class="">
         @foreach ($Rivews as $Rivew)
     <div class="reviews">
   <div class="row blockquote review-item">
@@ -152,15 +160,34 @@
 
     </div>
     <div class="col-md-9">
-      <h4>My awesome review</h4>
       <div class="ratebox text-center" data-id="0" data-rating="5"></div>
       <p class="review-text">{{$Rivew->review}}</p>
         <div class="rating" style="color: yellow">
+            @if ($Rivew->rating == 1)
+            <i class="fa fa-star"></i>
+            @endif
+            @if ($Rivew->rating == 2)
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            @endif
+            @if ($Rivew->rating == 3)
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            @endif
+            @if ($Rivew->rating == 4)
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            @endif
+            @if ($Rivew->rating == 5)
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
+            @endif
         </div>
       <small class="review-date">{{Carbon\Carbon::parse($Rivew->created_at)->diffForHumans()}}</small>
     </div>

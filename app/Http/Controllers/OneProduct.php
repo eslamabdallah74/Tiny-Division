@@ -14,7 +14,7 @@ class OneProduct extends Controller
     public function index($id)
     {
         $OneProduct = Products::find($id);
-        $Rivews = ProductRivew::where('product_id' , $id)->get();
+        $Rivews = ProductRivew::orderBy('id','DESC')->limit(4)->where('product_id' , $id)->get();
         return view('oneProduct', compact('OneProduct','Rivews'));
 
     }

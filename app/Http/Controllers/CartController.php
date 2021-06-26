@@ -21,12 +21,16 @@ class CartController extends Controller
     {
         $userCart       = Cart::where('user_id', Auth()->id())
         ->first();
-        $CartProducts   = CartProduct::where('user_id', Auth()->id())
-        ->where('cart_id', $userCart->id)
-        ->get();
-
-
-        return view('cart', compact('userCart', 'CartProducts'));
+        // dd($userCart);
+        if ($userCart == NULL)
+        {
+            return view('cart', compact('userCart'));
+        } else {
+            $CartProducts   = CartProduct::where('user_id', Auth()->id())
+            ->where('cart_id', $userCart->id)
+            ->get();
+            return view('cart', compact('userCart', 'CartProducts'));
+        }
     }
 
     /**
@@ -129,11 +133,26 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
+
         $cart  = Cart::where('user_id', Auth()->id())
         ->first();
+
+
+
         $deleteProduct = CartProduct::findOrFail($id);
         $deleteProduct->delete();
-        $this->updateTotal($cart);
-        return redirect()->route('my-cart.index');
+
+        $CartProducts   = CartProduct::where('user_id', Auth()->id())
+        ->where('cart_id', $cart->id)
+        ->get();
+
+        if ($CartProducts->count() >= 1) {
+            $this->updateTotal($cart);
+            return redirect()->route('my-cart.index');
+        } else {
+            $cart->delete();
+            return redirect()->route('my-cart.index');
+        }
+        // End of delete
     }
 }

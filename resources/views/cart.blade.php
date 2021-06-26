@@ -8,6 +8,13 @@
 
 @section('content')
 <div class="container">
+
+    @if ($userCart == NULL)
+    <div class="alert alert-danger" role="alert" id="DANGER">
+        There's not items here
+        <a href="{{asset('/')}}"> Go > Home <i class="fa fa-home"></i></a>
+      </div>
+    @else
     <div class="card cart">
         <div class="card-body">
             <div class="container mb-4">
@@ -101,4 +108,5 @@
         </div>
     </div>
 </div>
+@endif
 @endsection

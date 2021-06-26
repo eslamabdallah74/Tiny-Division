@@ -809,4 +809,6 @@ a:hover {
 .more_bt{
     margin-left: 0;
 }
-
+a:hover {
+    color: brown;
+}

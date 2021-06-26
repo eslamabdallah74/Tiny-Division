@@ -36,27 +36,16 @@ class ProductRivewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id,Request $request)
     {
-        $productID      = Products::find($request);
-        $userID         = User::where('user_id',Auth()->id());
 
-         // Validate database
-         $validated = $request->validate(
-            [
-                'rating'          => 'required',
-                'review'          => 'required',
-
-            ]
-        );
-            //  update product into databasex
-            $AddRivew = ProductRivew::all();
-            $AddRivew->user_id           = $userID;
-            $AddRivew->product_id        = $productID;
-            $AddRivew->rating            = $$request->rating;
-            $AddRivew->review            = $request->review;
-            $AddRivew->savae();
-            return redirect('/');
+            $product   = Products::findOrFail($id);
+            $rules = ProductRivew::rules($request);
+            $request->validate($rules);
+            $credentials = ProductRivew::credentials($request, $product->id);
+            $credentials = ProductRivew::create($credentials);
+            return redirect()->back()
+            ->with('message', 'You Rivew has been added');;
 
     }
 
