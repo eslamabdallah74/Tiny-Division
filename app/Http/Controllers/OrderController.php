@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Cart;
+use App\Models\CartProduct;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Products;
@@ -16,7 +19,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('my-cart');
+        //Show all orders
     }
 
     /**
@@ -26,10 +29,15 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('my-cart');
+
 
     }
-
+    public function ChangeStatus($id,$status)
+    {
+        $order  = Order::findOrFail($id);
+        $order->status  = $status;
+        $order->save();
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -38,36 +46,35 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $rules          = OrderProduct::rules($request);
-        $request->validate($rules);
-        $product        = Products::findOrFail($request->product_id);
-        // Check if user has already Order
-        $Order           = Order::where('user_id', Auth()->id())->first();
-        if ($Order==null) {// User does not have Order
-            $newOrder    = Order::create([
-                'user_id'   => Auth()->id(),
-                'total'     => $product->product_price
+        $cart   = Cart::where('id',$request->cart_id)
+        ->where('user_id',Auth()->id())
+        ->first();
+        if($cart){
+            $order = Order::create([
+                'user_id' => Auth()->id(),
+                'total'   => $cart->total,
+                'status'  => Order::ApproveStatus
             ]);
-            $credentials    = OrderProduct::credentials($request, $product);
-            $credentials['cart_id'] = $newOrder->id;
-            $CART           = OrderProduct::create($credentials);
-        } else {//User already have Order
-            $credentials    = OrderProduct::credentials($request, $product);
-            $credentials['cart_id'] = $Order->id;
-            // Test 1
-            $SameProduct = OrderProduct::where('user_id', Auth()->id())->where('product_id' , $product->id )->get();
-            if ($SameProduct->count() >= 1 ) {
-                return redirect()->route('my-cart.index')->withErrors('The Item Is Already Exist');
-            } else {
-            // Insert product into cart
-            $Order           = Order::create($credentials);
-            // update total price
-            $this->updateTotal($Order);
+            $CartProducts  = CartProduct::where('user_id',Auth()->id())
+            ->where('cart_id',$cart->id)
+            ->get();
+            foreach ($CartProducts as $CartInfo){
+                OrderProduct::create([
+                    'order_id'      => $order->id,
+                    'product_id'    => $CartInfo->product_id,
+                    'user_id'       => Auth()->id(),
+                    'price'         => $CartInfo->price,
+                    'quntity'       => $CartInfo->Qty,
+                    'total'         => $CartInfo->total,
+                ]);
+                $CartInfo->delete();
             }
+            $cart->delete();
+            return redirect()->back();
+        }else{
+            //Session
+            return redirect()->back();
         }
-
-
-        return redirect()->route('my-cart.index');
     }
 
     /**

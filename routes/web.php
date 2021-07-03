@@ -97,6 +97,7 @@ Route::resource('my-cart', CartController::class)->middleware('auth');
 
 // Order
 Route::resource('Order', OrderController::class)->middleware('auth');
+Route::POST('changeStatus/{id}/{status}', [OrderController::class,'ChangeStatus'])->middleware('auth');
 
 
 // Rivew

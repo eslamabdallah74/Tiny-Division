@@ -76,7 +76,7 @@
                                         <td></td>
                                         <td></td>
                                         <td>Sub-Total</td>
-                                        <td class="text-right">{{ $userCart->total }} $</td>
+                                        <td class="text-right">{{ number_format($userCart->total, 2) }} $</td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -92,7 +92,7 @@
                                         <td></td>
                                         <td></td>
                                         <td><strong>Total</strong></td>
-                                        <td class="text-right"><strong>{{ $userCart->total + 20}} $</strong></td>
+                                        <td class="text-right"><strong>{{ number_format($userCart->total+20, 2)}} $</strong></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -116,8 +116,9 @@
                             <div class="col-sm-12 col-md-6 text-right">
                                 <form method="POST" action="{{route('Order.store')}}">
                                     @csrf
-                                <button class="btn btn-lg btn-block btn-success text-uppercase" value="submit" id='BuyToShowForm' style="margin-bottom: 20px;">
-                                    Order Now
+                                    <input type="hidden" name="cart_id" value="{{ $userCart->id }}">
+                                    <button class="btn btn-lg btn-block btn-success text-uppercase" value="submit" id='BuyToShowForm' style="margin-bottom: 20px;">
+                                        Order Now
                                     </button>
                                 </form>
                                </div>
