@@ -10,12 +10,12 @@
    	<!-- contact section start -->
     <div class="layout_padding contact_section">
     	<div class="container">
-            
+
                     @if(session()->has('message'))
                 <div class="alert alert-success">
                     {{ session()->get('message') }}
                 </div>
-                        @endif
+                    @endif
 
     		<h1 class="new_text"><strong>Contact Now</strong></h1>
     	</div>

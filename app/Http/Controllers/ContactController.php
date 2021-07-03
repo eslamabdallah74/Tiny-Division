@@ -61,7 +61,7 @@ class ContactController extends Controller
             $insert_message->message        = $request->message;
 
             $insert_message->save();
-            return redirect('Contact')->with('message', 'Your message has been sent.');;
+            return redirect('Contact')->with('message', 'Your message has been sent.');
     }
 
     /**

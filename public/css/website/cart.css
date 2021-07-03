@@ -8,7 +8,12 @@
     max-height: 100px;
     max-width: 100px;
 }
-
+a {
+    color: black;
+}
+a:hover {
+    font-weight: bold;
+}
 .cart button:hover{
     background-color: #ff4e5b;
     border-color: #ff4e5b;

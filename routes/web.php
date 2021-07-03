@@ -63,8 +63,7 @@ Route::delete('dashboard/delete/{id}',[ProductsController::class],'destroy');
 
 
 //Order controller
-Route::resource('dashboard/order', OrderController::class)->middleware('auth');
-Route::get('dashboard/Create/cOrder/', [OrderController::class,'create'])->middleware('auth');
+Route::resource('dashboard/orders', OrderController::class)->middleware('auth');
 
 // Contact us
 Route::resource('dashboard/contacts', ContactController::class)->middleware('auth');
@@ -97,7 +96,7 @@ Route::resource('my-cart', CartController::class)->middleware('auth');
 
 // Order
 Route::resource('Order', OrderController::class)->middleware('auth');
-Route::POST('changeStatus/{id}/{status}', [OrderController::class,'ChangeStatus'])->middleware('auth');
+Route::POST('changeStatus/{id}/{status}', [OrderController::class,'ChangeStatus'])->middleware('auth')->name('Status');
 
 
 // Rivew

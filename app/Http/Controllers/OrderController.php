@@ -20,6 +20,10 @@ class OrderController extends Controller
     public function index()
     {
         //Show all orders
+        $OrdersProducts = OrderProduct::orderBy('id' , 'desc')->with('Product','User')->get();
+        $Orders         = Order::orderBy('id' , 'desc')->with('User')->get();
+        return view('dashboard/orders', compact('OrdersProducts','Orders'));
+
     }
 
     /**
@@ -37,6 +41,7 @@ class OrderController extends Controller
         $order  = Order::findOrFail($id);
         $order->status  = $status;
         $order->save();
+        return redirect('dashboard/orders')->with('message', 'Order Status Has Been Changed');
     }
     /**
      * Store a newly created resource in storage.
@@ -53,7 +58,7 @@ class OrderController extends Controller
             $order = Order::create([
                 'user_id' => Auth()->id(),
                 'total'   => $cart->total,
-                'status'  => Order::ApproveStatus
+                'status'  => Order::PendingStatus
             ]);
             $CartProducts  = CartProduct::where('user_id',Auth()->id())
             ->where('cart_id',$cart->id)

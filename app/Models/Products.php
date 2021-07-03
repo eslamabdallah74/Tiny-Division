@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
 use App\Models\Order;
+use App\Models\OrderProduct;
+
 
 
 class Products extends Model
@@ -32,7 +34,10 @@ class Products extends Model
      public function productOrder()
     {
         return $this->hasMany(Order::class, 'product_id');
-
+    }
+    public function ProductName()
+    {
+        return $this->belongsTo(OrderProduct::class, 'product_id');
     }
 }
 
