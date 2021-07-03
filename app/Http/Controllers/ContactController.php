@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use App\Models\CartProduct;
 
 class ContactController extends Controller
 {
@@ -15,6 +16,7 @@ class ContactController extends Controller
     public function index()
     {
         $Contacts = Contact::orderBy('id' , 'desc')->get();
+
         return view('dashboard/contacts', compact('Contacts'));
     }
 

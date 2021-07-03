@@ -54,4 +54,6 @@ class CartProduct extends Model
 
         return $credentials;
     }
+
+
 }

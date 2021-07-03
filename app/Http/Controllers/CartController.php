@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
-use App\Models\CartProduct;
-use App\Models\Products;
-use DB;
-use Illuminate\Http\Request;
-use Session;
+    use App\Models\Cart;
+    use App\Models\CartProduct;
+    use App\Models\Order;
+    use App\Models\OrderProduct;
+    use App\Models\Products;
+    use Auth;
+    use DB;
+    use Illuminate\Http\Request;
+    use Session;
 
 
 class CartController extends Controller
@@ -21,6 +24,8 @@ class CartController extends Controller
     {
         $userCart       = Cart::where('user_id', Auth()->id())
         ->first();
+        $MyCart          = CartProduct::where('user_id' , Auth()->id())->get();
+
         // dd($userCart);
         if ($userCart == NULL)
         {
@@ -29,7 +34,7 @@ class CartController extends Controller
             $CartProducts   = CartProduct::where('user_id', Auth()->id())
             ->where('cart_id', $userCart->id)
             ->get();
-            return view('cart', compact('userCart', 'CartProducts'));
+            return view('cart', compact('userCart', 'CartProducts','MyCart'));
         }
     }
 
@@ -122,8 +127,23 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+   // Validate database
+   $validated = $request->validate(
+    [
+        'Qty'          => 'required',
+    ]
+    );
+    //  update product into databasex
+    $AddQty = CartProduct::find($id);
+    $AddQty->Qty  = $request->Qty;
+    $AddQty->total = $AddQty->price * $AddQty->Qty;
+    $AddQty->update();
+    $cart = Cart::where('user_id',Auth()->id())->first();
+    $this->updateTotal($cart);
+    return redirect('my-cart');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -136,8 +156,6 @@ class CartController extends Controller
 
         $cart  = Cart::where('user_id', Auth()->id())
         ->first();
-
-
 
         $deleteProduct = CartProduct::findOrFail($id);
         $deleteProduct->delete();
@@ -155,4 +173,6 @@ class CartController extends Controller
         }
         // End of delete
     }
+    // Order
+
 }

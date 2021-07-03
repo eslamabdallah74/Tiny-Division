@@ -38,7 +38,21 @@
                                             <td><img class="img-thumbnail" src="{{ asset('uploads/products/'.$CartProduct->product->product_img) }}" /> </td>
                                             <td>{{ $CartProduct->product->product_name }}</td>
                                             <td>{{ $CartProduct->product->product_Qty }}</td>
-                                            <td><input class="form-control" type="text" value="{{ $CartProduct->Qty }}" /></td>
+                                            <td>
+                                                <!-- QTY -->
+                                            <form method="POST" action="{{ route('my-cart.update', $CartProduct->id) }}">
+                                            @csrf
+                                            @method('PATCH')
+                                              <div class="input-group">
+                                                    <input name="Qty" value="{{$CartProduct->Qty}}" type="text" id="quantity"  class="form-control input-number"  min="1" max="100">
+                                                    <span class="input-group-btn">
+                                                        <button value="submit" class="quantity-left-minus btn btn-secondary btn-number"  data-type="minus" data-field="">
+                                                        Change
+                                                        </button>
+                                                   </span>
+                                                </div>
+                                             </form>
+                                            </td>
                                             <td class="text-right">{{ $CartProduct->price }} $</td>
                                             <td>
                                                 <a class="btn btn-danger" href="{{ route('users.index') }}"
@@ -55,6 +69,7 @@
                                             </form>
                                          </tr>
                                     @endforeach
+
                                          <tr>
                                         <td></td>
                                         <td></td>
@@ -69,7 +84,7 @@
                                         <td></td>
                                         <td></td>
                                         <td>Shipping</td>
-                                        <td class="text-right">20,00$</td>
+                                        <td class="text-right">+20,00$</td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -99,14 +114,21 @@
                                 <button class="btn btn-lg btn-block btn-success text-uppercase"><a href="{{url('/')}}">Continue Shopping</a></button>
                             </div>
                             <div class="col-sm-12 col-md-6 text-right">
-                                <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
-                            </div>
+                                <form method="POST" action="{{route('Order.store')}}">
+                                    @csrf
+                                <button class="btn btn-lg btn-block btn-success text-uppercase" value="submit" id='BuyToShowForm' style="margin-bottom: 20px;">
+                                    Order Now
+                                    </button>
+                                </form>
+                               </div>
                         </div>
                     </div>
+                    {{--  --}}
                 </div>
             </div>
         </div>
+      </div>
     </div>
-</div>
+
 @endif
 @endsection

@@ -32,7 +32,7 @@ class ProductRivew extends Model
     {
         $rules = [
             'review'          => 'required|string|max:255|min:3',
-            'rating'          => 'required|integer|max:255',
+            'rating'          => 'required|integer|max:5|min:1',
 
         ];
         return $rules;

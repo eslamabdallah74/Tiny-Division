@@ -8,6 +8,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductRivewController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProductsController;
+use App\Models\OrderProduct;
 use App\Models\ProductRivew;
 use App\Models\Users;
 use Illuminate\Support\Facades\Route;
@@ -80,7 +81,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 // Main website
-Route::view('/' , 'welcome');
+Route::view('/' , '
+');
 Route::get('/', [HomepageController::class,'index']);
 
 Route::view('Collection' , 'Collection');
@@ -92,6 +94,10 @@ Route::post('oneProduct/{id}', [App\Http\Controllers\OneProduct::class,'store'])
 
 //Cart
 Route::resource('my-cart', CartController::class)->middleware('auth');
+
+// Order
+Route::resource('Order', OrderController::class)->middleware('auth');
+
 
 // Rivew
 Route::post('rivew/{id}', [App\Http\Controllers\ProductRivewController::class,'store'])->middleware('auth')->name('rivew');

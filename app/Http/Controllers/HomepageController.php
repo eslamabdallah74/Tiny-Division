@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CartProduct;
 use App\Models\Homepage;
 use App\Models\Products;
 use App\Models\Category;
+use App\Models\ProductRivew;
+use Auth;
 use Illuminate\Http\Request;
 
 class HomepageController extends Controller

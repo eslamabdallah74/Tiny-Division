@@ -19,5 +19,5 @@ $("#4").on('click',function(){
   $("#1").on('click',function(){
     $("#target-suits").removeClass('hide').siblings('').addClass('hide');
   });
-//
+// qty adding
 

@@ -809,6 +809,10 @@ a:hover {
 .more_bt{
     margin-left: 0;
 }
-a:hover {
-    color: brown;
+a {
+    color: white;
+    cursor: pointer;
+}
+a:hover{
+    color: #0C0116;
 }

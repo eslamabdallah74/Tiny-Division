@@ -79,7 +79,11 @@
 
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a href="{{asset('my-cart')}}" class="dropdown-item" id="cart-box"><i class="fa fa-shopping-cart fa-2x"></i> (0) </a>
+            <a href="{{asset('my-cart')}}" class="dropdown-item" id="cart-box"><i class="fa fa-shopping-cart fa-2x"></i>
+                @php
+                $MyCart = App\Models\CartProduct::where('user_id' , Auth()->id())->get();
+                @endphp
+                ({{$MyCart->count()}}) </a>
 
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
