@@ -21,8 +21,15 @@ class ProductsSeeder extends Seeder
             "shoes-img9.png","shoes-img7.png"
         ];
 
-        $categories  = category::all();
         $faker       = Faker::create();
+        foreach (range(1,4) as $value) {
+            DB::table('categories')->insert(
+                [
+                  'category_name'  => $faker->company,
+                ]
+           );
+        }
+        $categories  = category::all();
         foreach (range(1,16) as $value) {
             $img = array_rand($array,1);
             DB::table('products')->insert(
@@ -32,7 +39,10 @@ class ProductsSeeder extends Seeder
                   'product_approval'        => $faker->boolean,
                   'product_img'             => $array[$img],
                   'product_price'           => $faker->numberBetween(100,5000),
-                  'category_id'             => $categories->random()->id
+                  'product_Qty'             => $faker->numberBetween(50,300),
+                  'category_id'             => $categories->random()->id,
+                  'updated_at'              => now(),
+                  'created_at'              => now(),
                 ]
            );
         }

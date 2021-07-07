@@ -10,6 +10,18 @@
 
 
 <div class="container">
+    <div class="row mydot">
+                    <div class="container">
+                <div class="row">
+                <a href="#" class="intro-banner-vdo-play-btn pinkBg" id="Close-form">
+                    <i class="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
+                    <span class="ripple pinkBg"></span>
+                    <span class="ripple pinkBg"></span>
+                    <span class="ripple pinkBg"></span>
+                    </a>
+                    </div>
+                    </div>
+                 </div>
 
 {{-- My Product --}}
 <div class="row main-product">
@@ -20,8 +32,8 @@
     </div>
     <div class="col-sm-6 product-info">
         <h1 class="prduct-name">{{$OneProduct->product_name}}</h1>
-        <span class="prduct-price">{{$OneProduct->product_price}}$</span>
-        <p class="product-description">{{$OneProduct->product_description}}$</p>
+        <span class="prduct-price">{{ $OneProduct->product_price}}$</span>
+        <p class="product-description">{{$OneProduct->product_description}}</p>
 
         <ul style="color:gold">
             @if ($OneProduct->rating == 1)
@@ -54,46 +66,135 @@
         <div class="section" style="padding-bottom:20px;">
             <h6 class="title-attr"><small>CANTIDAD</small></h6>
         </div>
+        <!-- Add product to cart -->
+        <form method="POST" action="{{ route('my-cart.store') }}">
+            @csrf
+            <input type="hidden" name="product_id" value="{{ $OneProduct->id }}">
                  <!-- Botones de compra -->
-                 <div class="section" style="padding-bottom:20px;">
-                    @if (Auth::check())
-                    <label for="">Quntity</label>
-                    <input type="number" name="" id="">
-                    <div class="buy-product"> <button class="btn btn-success" id='BuyToShowForm' style="margin-bottom: 20px;">Buy now</button> </div>
-                    @endif
-                    @if (!Auth::check())
-                    <div class="Register-To-Buy"> <button class="btn btn-success" style="margin-bottom: 20px;"> <a href="{{url('login')}}">Login To Buy</a> </button> </div>
-                    <div class="Register-To-Buy"> <button class="btn btn-primary" style="margin-bottom: 20px;"> <a href="{{url('register')}}">Register To Buy</a> </button> </div>
-                    @endif
-
-                    <h6><a href="#"><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span> Agregar a lista de deseos</a></h6>
+            <div class="section" style="padding-bottom:20px;">
+                @if (Auth::check())
+                    <div class="buy-product">
+                        <button class="btn btn-success" value="submit" id='BuyToShowForm' style="margin-bottom: 20px;">
+                            Add To Cart
+                        </button>
+                    </div>
+                @endif
+                @if (!Auth::check())
+                <div class="Register-To-Buy">
+                    <button class="btn btn-success" style="margin-bottom: 20px;">
+                        <a href="{{url('login')}}">Login To Buy</a>
+                    </button>
+                    </div>
+                <div class="Register-To-Buy">
+                    <button class="btn btn-primary" style="margin-bottom: 20px;">
+                        <a href="{{url('register')}}">Register To Buy</a>
+                    </button>
                 </div>
-            </div>
-    </div>
-    {{-- Buy form --}}
-    <div class="wrapper" id="BuyForm">
-        <div class="buy-form">
-            <form method="POST" action="{{asset('oneProduct')}}">
-                @csrf
-                <div> <h1>{{$OneProduct->product_name}}</h1></div>
-                <div><h3>Quntity = 0</h3></div>
-                <div><h3>Tottal Price = 0</h3></div>
-                <button type="submit" class="btn btn-success"> Buy </button>
-                <div class="row mydot">
-                    <div class="container">
-                <div class="row">
-                <a href="#" class="intro-banner-vdo-play-btn pinkBg" id="Close-form">
-                    <i class="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
-                    <span class="ripple pinkBg"></span>
-                    <span class="ripple pinkBg"></span>
-                    <span class="ripple pinkBg"></span>
+                @endif
+                <h6>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span>
+                         Agregar a lista de deseos
                     </a>
-                    </div>
-                    </div>
-                 </div>
-              </form>
-        </div>
+                </h6>
+            </div>
+        </form>
     </div>
-
+  </div>
 </div>
+<!-- reviews -->
+<!-- Add reviw -->
+ <div class="">
+    <form action="{{route('rivew',$OneProduct->id)}}" method="POST">
+        @csrf
+     <div class="">
+         <div class="add-reviw col-sm-12">
+         <div class="form-group">
+        <label for="exampleFormControlSelect1" id="rating-label">Rating</label>
+            <select name="rating" class="form-control" id="exampleFormControlSelect1">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            </select>
+        </div>
+            <div class="form-group">
+            <textarea name="review" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Your Rivew"></textarea>
+            </div>
+            <button class="btn btn-success" value="submit" id='BuyToShowForm' style="margin-bottom: 20px;">
+            Send
+            </button>
+         </div>
+
+         @if(session()->has('message'))
+         <div class="alert alert-success">
+             {{ session()->get('message') }}
+         </div>
+                 @endif
+     </div>
+   </form>
+                 {{-- Validate error msg --}}
+   @if ($errors->any())
+   <div class="alert alert-danger pt-10">
+       <ul>
+           @foreach ($errors->all() as $error)
+               <li>{{ $error }}</li>
+           @endforeach
+       </ul>
+   </div>
+@endif
+ </div>
+<!-- end add reviw -->
+<!-- show reviw -->
+<div class="">
+    <div class="">
+        @foreach ($Rivews as $Rivew)
+    <div class="reviews">
+  <div class="row blockquote review-item">
+    <div class="col-md-3 text-center">
+      <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
+      <div class="caption">
+        <small>by <a href="#">{{$Rivew->GetUser->name}}</a></small>
+      </div>
+
+    </div>
+    <div class="col-md-9">
+      <div class="ratebox text-center" data-id="0" data-rating="5"></div>
+      <p class="review-text">{{$Rivew->review}}</p>
+        <div class="rating" style="color: yellow">
+            @if ($Rivew->rating == 1)
+            <i class="fa fa-star"></i>
+            @endif
+            @if ($Rivew->rating == 2)
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            @endif
+            @if ($Rivew->rating == 3)
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            @endif
+            @if ($Rivew->rating == 4)
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            @endif
+            @if ($Rivew->rating == 5)
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            @endif
+        </div>
+      <small class="review-date">{{Carbon\Carbon::parse($Rivew->created_at)->diffForHumans()}}</small>
+    </div>
+  </div>
+</div>
+@endforeach
+    </div>
+</div>
+<!-- End of reviw -->
 @endsection

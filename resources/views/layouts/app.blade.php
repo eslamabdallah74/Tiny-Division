@@ -57,6 +57,9 @@
                       <li class="nav-item">
                         <a class="nav-link" href="{{url('dashboard/orders')}}">Orders</a>
                       </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{url('dashboard/contacts')}}">Contact</a>
+                      </li>
                   </ul>
                   <!-- Right Side Of Navbar -->
            <ul class="navbar-nav ml-auto">
@@ -112,6 +115,7 @@
              class="col-md-11 daashbored-Orders">
              <a href="{{url('dashboard/orders')}}">   <i class="fab fa-jedi-order fa-2x"></i> <br> Orders</a>  </div>
         </div>
+
     </div>
 </div>
         <main class="py-4">

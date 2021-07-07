@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laratrust\Traits\LaratrustUserTrait;
 use Seld\PharUtils\Timestamps;
-use App\Models\Order;
+use App\Models\OrderProduct;
 
 
 class User extends Authenticatable
@@ -23,7 +23,7 @@ class User extends Authenticatable
 
     public function usersOrder()
     {
-        return $this->hasMany(Order::class, 'user_id');
+        return $this->hasMany(OrderProduct::class, 'user_id');
 
     }
 

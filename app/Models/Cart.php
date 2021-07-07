@@ -7,14 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
-    // protected $table = 'carts';
-    // protected $fillable =[
-    //     'user_id',
-    //     'total'
-    // ];
+    protected $table = 'carts';
+    protected $fillable =[
+        'user_id',
+        'total'
+    ];
     public function products()
     {
         return $this->belongsToMany(Products::class,'cart_products');
     }
+
     use HasFactory;
 }

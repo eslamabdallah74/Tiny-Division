@@ -10,6 +10,13 @@
    	<!-- contact section start -->
     <div class="layout_padding contact_section">
     	<div class="container">
+
+                    @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+                    @endif
+
     		<h1 class="new_text"><strong>Contact Now</strong></h1>
     	</div>
     	<div class="container-fluid ram">
@@ -18,25 +25,38 @@
     				<div class="email_box">
                     <div class="input_main">
                        <div class="container">
-                          <form action="/action_page.php">
+                           <!-- Form -->
+                          <form method="POST"  action="{{asset('dashboard/contacts')}}">
+                             @csrf
                             <div class="form-group">
-                              <input type="text" class="email-bt" placeholder="Name" name="Name">
+                              <input type="text" class="email-bt" placeholder="Name" name="name">
                             </div>
                             <div class="form-group">
-                              <input type="text" class="email-bt" placeholder="Phone Numbar" name="Name">
+                              <input type="text" class="email-bt" placeholder="Phone Numbar" name="number">
                             </div>
                             <div class="form-group">
-                              <input type="text" class="email-bt" placeholder="Email" name="Email">
+                              <input type="text" class="email-bt" placeholder="Email" name="email">
                             </div>
 
                             <div class="form-group">
-                                <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="Massage"></textarea>
+                                <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="message"></textarea>
                             </div>
+                            {{-- Validate error msg --}}
+                               @if ($errors->any())
+                               <div class="alert alert-danger pt-10">
+                                   <ul>
+                                       @foreach ($errors->all() as $error)
+                                           <li>{{ $error }}</li>
+                                       @endforeach
+                                   </ul>
+                               </div>
+                           @endif
+                            <div class="send_btn">
+                               <input type="submit" value="Submit" class="btn btn-danger btn-lg">
+                              </div>
                           </form>
                        </div>
-                       <div class="send_btn">
-                        <button class="main_bt">Send</button>
-                       </div>
+
                     </div>
     		</div>
     			</div>

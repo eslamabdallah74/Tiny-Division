@@ -38,7 +38,6 @@
 							<h1 class="banner_text">{{$Product->product_price}}$</h1>
 							<h1 class="mens_text"><strong>{{$Product->product_name}}</strong></h1>
 							<p class="lorem_text">{{$Product->product_description}}</p>
-							<button class="buy_bt"><a style='color:white'  href="{{asset('oneProduct/'.$Product->id)}}">Buy</a></button>
 							<button class="more_bt"><a style='color:#f12a47' href="{{asset('oneProduct/'.$Product->id)}}">See More</a></button>
 						</div>
 					</div>

@@ -2,9 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
-use App\Models\CartProduct;
-use Illuminate\Http\Request;
+    use App\Models\Cart;
+    use App\Models\CartProduct;
+    use App\Models\Order;
+    use App\Models\OrderProduct;
+    use App\Models\Products;
+    use Auth;
+    use DB;
+    use Illuminate\Http\Request;
+    use Session;
+
 
 class CartController extends Controller
 {
@@ -15,12 +22,20 @@ class CartController extends Controller
      */
     public function index()
     {
-        $userCart       = Cart::where('user_id',Auth()->id())
+        $userCart       = Cart::where('user_id', Auth()->id())
         ->first();
-        $CartProducts   = CartProduct::where('user_id',Auth()->id())
-        ->where('cart_id',$userCart->id)
-        ->get();
-        return view('cart',compact('userCart','CartProducts'));
+        $MyCart          = CartProduct::where('user_id' , Auth()->id())->get();
+
+        // dd($userCart);
+        if ($userCart == NULL)
+        {
+            return view('cart', compact('userCart'));
+        } else {
+            $CartProducts   = CartProduct::where('user_id', Auth()->id())
+            ->where('cart_id', $userCart->id)
+            ->get();
+            return view('cart', compact('userCart', 'CartProducts','MyCart'));
+        }
     }
 
     /**
@@ -28,9 +43,8 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($request)
     {
-        //
     }
 
     /**
@@ -41,7 +55,37 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules          = CartProduct::rules($request);
+        $request->validate($rules);
+        $product        = Products::findOrFail($request->product_id);
+        // Check if user has already cart
+        $cart           = Cart::where('user_id', Auth()->id())
+        ->first();
+        if ($cart==null) {// User does not have cart
+            $newCart    = Cart::create([
+                'user_id'   => Auth()->id(),
+                'total'     => $product->product_price
+            ]);
+            $credentials    = CartProduct::credentials($request, $product);
+            $credentials['cart_id'] = $newCart->id;
+            $CART           = CartProduct::create($credentials);
+        } else {//User already have cart
+            $credentials    = CartProduct::credentials($request, $product);
+            $credentials['cart_id'] = $cart->id;
+            // Test 1
+            $SameProduct = CartProduct::where('user_id', Auth()->id())->where('product_id' , $product->id )->get();
+            if ($SameProduct->count() >= 1 ) {
+                return redirect()->route('my-cart.index')->withErrors('The Item Is Already Exist');
+            } else {
+            // Insert product into cart
+            $CART           = CartProduct::create($credentials);
+            // update total price
+            $this->updateTotal($cart);
+            }
+        }
+
+
+        return redirect()->route('my-cart.index');
     }
 
     /**
@@ -52,7 +96,15 @@ class CartController extends Controller
      */
     public function show($id)
     {
-        //
+    }
+    public function updateTotal($Cart)//Update cart When (ADD produc,Delete Product,Edit Qty of the product)
+    {
+        $total  = CartProduct::where('cart_id', $Cart->id)
+        ->selectRaw('SUM(total) as total')
+        ->first()
+        ->total;
+        $Cart->total = $total;
+        $Cart->save();
     }
 
     /**
@@ -75,8 +127,23 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+   // Validate database
+   $validated = $request->validate(
+    [
+        'Qty'          => 'required',
+    ]
+    );
+    //  update product into databasex
+    $AddQty = CartProduct::find($id);
+    $AddQty->Qty  = $request->Qty;
+    $AddQty->total = $AddQty->price * $AddQty->Qty;
+    $AddQty->update();
+    $cart = Cart::where('user_id',Auth()->id())->first();
+    $this->updateTotal($cart);
+    return redirect('my-cart');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -86,6 +153,26 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $cart  = Cart::where('user_id', Auth()->id())
+        ->first();
+
+        $deleteProduct = CartProduct::findOrFail($id);
+        $deleteProduct->delete();
+
+        $CartProducts   = CartProduct::where('user_id', Auth()->id())
+        ->where('cart_id', $cart->id)
+        ->get();
+
+        if ($CartProducts->count() >= 1) {
+            $this->updateTotal($cart);
+            return redirect()->route('my-cart.index');
+        } else {
+            $cart->delete();
+            return redirect()->route('my-cart.index');
+        }
+        // End of delete
     }
+    // Order
+
 }

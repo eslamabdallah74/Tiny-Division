@@ -8,11 +8,16 @@
     max-height: 100px;
     max-width: 100px;
 }
-.cart button{
-    background-color: #ff4e5b;
-    border-color: #ff4e5b;
+a {
+    color: black;
+}
+a:hover {
+    font-weight: bold;
 }
 .cart button:hover{
     background-color: #ff4e5b;
     border-color: #ff4e5b;
+}
+.alert-danger  {
+    margin: 20% 0;
 }
