@@ -39,6 +39,11 @@ class Products extends Model
     {
         return $this->belongsTo(OrderProduct::class, 'product_id');
     }
+
+    public function Product()
+    {
+        return $this->belongsTo(Products::class, 'product_id' ,'id');
+    }
 }
 
 

@@ -75,10 +75,10 @@ class OrderController extends Controller
                 $CartInfo->delete();
             }
             $cart->delete();
-            return redirect()->back();
+            return redirect('my-cart')->with('message', 'Your Order Has Been Submited');
         }else{
             //Session
-            return redirect()->back();
+            return redirect('my-cart')->with('message', '404');
         }
     }
 
@@ -124,6 +124,8 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteOrder = Order::findorFail($id);
+        $deleteOrder->delete();
+        return redirect('/dashboard/orders');
     }
 }

@@ -10,24 +10,27 @@
         <div class="alert alert-success">
             {{ session()->get('message') }}
         </div>
-            @endif
+        @endif
         <h1 class="main-h1">Orders
             <br>
         </h1>
         <table class="table table-dark">
             <thead>
               <tr>
+                <th scope="col">Order #ID</th>
                 <th scope="col">User</th>
                 <th scope="col">Total Price</th>
                 <th scope="col">Status</th>
                 <th scope="col">Change Status</th>
+                <th scope="col">Delete Order</th>
               </tr>
             </thead>
             <tbody>
                 @foreach ($Orders as $Order)
                 <tr>
+                    <th scope="col">{{$Order->id}}</th>
                     <th scope="col">{{$Order->User->name}}</th>
-                    <th scope="col">{{$Order->total }}</th>
+                    <th scope="col">${{$Order->total }}</th>
                     <th scope="col">
                         @if ($Order->status == (App\Models\Order::ApproveStatus))
                         Approved
@@ -82,6 +85,21 @@
                             </form>
                        </th>
                         @endif
+                        {{-- Delete Order --}}
+                        <td>
+                            <a class="btn btn-dark" href="{{ route('users.index') }}"
+                            onclick="event.preventDefault();
+                             document.getElementById(
+                               'delete-form-{{$Order->id}}').submit();">
+                            Delete      <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                        <form id="delete-form-{{$Order->id}}"
+                           + action="{{route('Order.destroy', $Order->id)}}"
+                           method="post">
+                           @csrf @method('DELETE')
+                         </form>
+                      </tr>
 
 
 
@@ -99,7 +117,7 @@
         <table class="table table-dark">
             <thead>
               <tr>
-                <th scope="col">Order id </th>
+                <th scope="col">Order Product #ID </th>
                 <th scope="col">Product</th>
                 <th scope="col">User </th>
                 <th scope="col">Price</th>
@@ -113,7 +131,7 @@
                     <th scope="col">{{$OrdersProduct->order_id}}</th>
                     <th scope="col">{{$OrdersProduct->Product->product_name}}</th>
                     <th scope="col">{{$OrdersProduct->User->name}}</th>
-                    <th scope="col">{{$OrdersProduct->price}}</th>
+                    <th scope="col">${{$OrdersProduct->price}}</th>
                     <th scope="col">{{$OrdersProduct->quntity}}</th>
                     <th scope="col">{{$OrdersProduct->total}}</th>
                   </tr>

@@ -13,4 +13,13 @@ strong {
 .our_shop{
     padding-top: 10px;
 }
+.email-bt{
+    max-width: 65%;
+}
+.massage-bt{
+    max-width: 65%;
 
+}
+.alert-danger{
+    max-width: 65%;
+}

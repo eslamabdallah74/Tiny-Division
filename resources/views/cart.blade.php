@@ -10,6 +10,13 @@
 <div class="container">
 
     @if ($userCart == NULL)
+                        {{-- Succsess message --}}
+                        @if(session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }}
+                        </div>
+                        @endif
+
     <div class="alert alert-danger" role="alert" id="DANGER">
         There's not items here
         <a href="{{asset('/')}}"> Go > Home <i class="fa fa-home"></i></a>
@@ -67,6 +74,8 @@
                                             method="post">
                                             @csrf @method('DELETE')
                                             </form>
+                                            <td></td>
+
                                          </tr>
                                     @endforeach
 
@@ -74,25 +83,22 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
                                         <td>Sub-Total</td>
-                                        <td class="text-right">{{ number_format($userCart->total, 2) }} $</td>
+                                        <td class="text-right">${{number_format($userCart->total, 2)}} </td>
                                     </tr>
                                     <tr>
-                                        <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td>Shipping</td>
-                                        <td class="text-right">+20,00$</td>
+                                        <td class="text-right">+$20,00</td>
                                     </tr>
                                     <tr>
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
                                         <td><strong>Total</strong></td>
-                                        <td class="text-right"><strong>{{ number_format($userCart->total+20, 2)}} $</strong></td>
+                                        <td class="text-right"><strong>${{ number_format($userCart->total+20, 2)}} </strong></td>
                                     </tr>
                                 </tbody>
                             </table>
