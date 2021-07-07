@@ -22,7 +22,7 @@
                     <td>{{$allUsers->count()}}</td>
                     <td>{{$allGategories->count()}}</td>
                     <td>{{$allproducts->count()}}</td>
-                    <td>4</td>
+                    <td>{{$allorders->count()}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -65,7 +65,7 @@
                     <tr>
                         <th scope="row">{{$key+1}}</th>
                         <td>{{$product->product_name}}</td>
-                        <td>{{$product->product_price}}</td>
+                        <td>${{$product->product_price}}</td>
                         <td>
                            <span id="dashbored-img">
                              <img src="{{ asset('uploads/products/' . $product->product_img) }}" alt="product image">
@@ -76,7 +76,6 @@
                       </tr>
                     @endforeach
                 </tbody>
-
                  </table>
                  {{-- End of table Products --}}
                  <h3 class="">last <a href="/orders">Orders</a> registered</h3>
@@ -88,30 +87,22 @@
                        <th scope="col">Product Name</th>
                        <th scope="col">Product Price</th>
                        <th scope="col">Orderd at</th>
+                       <th scope="col">Since</th>
                      </tr>
                    </thead>
                    <tbody>
+                       @foreach ($last3orders as $last3order)
+
                      <tr>
                        <th scope="row">1</th>
-                       <td>Mark</td>
-                       <td>Otto</td>
-                       <td>Otto</td>
-                       <td>2/2</td>
+                       <td>{{$last3order->User->name}}</td>
+                       <td>{{$last3order->Product->product_name}}</td>
+                       <td>${{$last3order->price}}</td>
+                       <td>{{$last3order->created_at}}</td>
+                       <td>{{Carbon\Carbon::parse($last3order->created_at)->diffForHumans()}}</td>
+
                      </tr>
-                     <tr>
-                       <th scope="row">2</th>
-                       <td>Jacob</td>
-                       <td>Thornton</td>
-                       <td>Otto</td>
-                       <td>2/2</td>
-                     </tr>
-                     <tr>
-                       <th scope="row">3</th>
-                       <td>Larry</td>
-                       <td>the Bird</td>
-                       <td>Otto</td>
-                       <td>2/2</td>
-                     </tr>
+                     @endforeach
                    </tbody>
                  </table>
              {{-- End of table Orders --}}

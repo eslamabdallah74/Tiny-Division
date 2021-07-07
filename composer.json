@@ -14,9 +14,11 @@
         "laravel/ui": "^3.3",
         "liorchamla/faker-prices": "^2.0",
         "nesbot/carbon": "^2.48",
-        "santigarcor/laratrust": "^6.3"
+        "santigarcor/laratrust": "^6.3",
+        "sentry/sentry-laravel": "^2.7"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.6",
         "barryvdh/laravel-ide-helper": "^2.10",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",

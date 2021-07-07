@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\User;
+use App\Models\Products;
 use AuthenticatesWithLdap;
 
 
@@ -26,7 +27,10 @@ class ProductRivew extends Model
     public function GetUser()
     {
         return $this->belongsTo(User::class, 'user_id' ,'id');
-
+    }
+    public function Product()
+    {
+        return $this->belongsTo(Products::class, 'product_id' ,'id');
     }
     public static function rules()
     {

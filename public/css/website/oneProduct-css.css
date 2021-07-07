@@ -154,3 +154,6 @@ margin:0;
 #exampleFormControlSelect1 {
     display: none;
 }
+small a {
+    color: black;
+}

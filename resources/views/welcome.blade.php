@@ -150,65 +150,47 @@
 	<!-- new collection section end -->
 	<!-- New Arrivals section start -->
     <div class="layout_padding gallery_section">
-    	<div class="container">
-    		<div class="row">
+        <div class="container mt-5">
+            <div class="row">
                 @foreach ($NewArrivals as $NewArrival)
-                <a href="{{asset('oneProduct/'.$NewArrival->id)}}">
-    			<div class="col-sm-4">
-    				<div class="best_shoes">
-    					<p class="best_text">{{$NewArrival->product_name}}</p>
-    					<div class="shoes_icon"><img src="{{ asset('uploads/products/' . $NewArrival->product_img) }}" alt="product image"></div>
-    					<div class="star_text">
-    						<div class="left_part">
-    							<ul>
-                                    @if ($NewArrival->rating == 1)
-    	    						<i class="far fa-star"></i>
-									<i class="far fa-star"></i>
-									<i class="far fa-star"></i>
-									<i class="far fa-star"></i>
-									<i class="far fa-star"></i>
-                                    @endif
-                                    @if ($NewArrival->rating == 2)
-    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="images/star-icon.png"></a></li>
-                                    @endif
-                                    @if ($NewArrival->rating == 3)
-    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="images/star-icon.png"></a></li>
-    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
-                                    @endif
-                                    @if ($NewArrival->rating == 4)
-    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="images/star-icon.png"></a></li>
-    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
-    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
-                                    @endif
-                                    @if ($NewArrival->rating == 5)
-    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="images/star-icon.png"></a></li>
-    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
-    	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
-                                    <li><a href="#"><img src="images/star-icon.png"></a></li>
-                                    @endif
-    	    					</ul>
-    						</div>
-    						<div class="right_part">
-    							<div class="shoes_price">$ <span style="color: #ff4e5b;">{{$NewArrival->product_price}}</span></div>
-    						</div>
-    					</div>
-                        </a>
-    				</div>
-    			</div>
-                {{-- End --}}
+                <div class="col-md-3">
+                    <div class="card1">
+                        <div class="image-container">
+                            <div class="first">
+                                <div class="d-flex justify-content-between align-items-center"> </div>
+                            </div> <img src="{{ asset('uploads/products/' . $NewArrival->product_img) }}" class="img-fluid rounded thumbnail-image">
+                        </div>
+                        <div class="product-detail-container p-2">
+                            <div class="d-flex justify-content-between ">
+                                <h5 class="dress-name1"> {{$NewArrival->product_name}} </h5>
+                                <div class="d-flex flex-column mb-2"> <span class="new-price1">${{$NewArrival->product_price}}</span> > </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center pt-1">
+                                <div class="color-select d-flex "> <input type="button" name="grey" class="btn creme"> <input type="button" name="red" class="btn red ml-2"> <input type="button" name="blue" class="btn blue ml-2"> </div>
+                                <div class="d-flex "> <span class="item-size mr-2 btn1" type="button">S</span> <span class="item-size mr-2 btn1" type="button">M</span> <span class="item-size btn1" type="button">L</span> </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center pt-1">
+                                <div> <i class="fa fa-star-o rating-star"></i> <span class="rating-number">3.6</span> </div> <a href="{{asset('oneProduct/'.$NewArrival->id)}}" class="buy">BUY +</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <div class="card voutchers">
+                            <div class="voutcher-divider">
+                                <div class="voutcher-left text-center"> <span class="voutcher-name">Vegetarian Food</span>
+                                    <h5 class="voutcher-code">#VEGANLOVE</h5>
+                                </div>
+                                <div class="voutcher-right text-center border-left">
+                                    <h5 class="discount-percent">20%</h5> <span class="off">Off</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 @endforeach
-    		</div>
-    		<div class="buy_now_bt">
-            <button class="btn btn-info" ><a style="color:white" href="{{asset('/Collection')}}">Buy Now</a></button>
-    		</div>
-    	</div>
+            </div>
+        </div>
     </div>
    	<!-- New Arrivals section end -->
-
-
 
 @endsection
