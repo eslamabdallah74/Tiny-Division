@@ -23,7 +23,7 @@
                 <div class="img-container">
                     <div class="d-flex justify-content-between align-items-center p-2 first">
                           <span class="wishlist"><i class="fa fa-heart"></i></span>
-                        </div> <img src="{{ asset('uploads/products/' . $OurProduct->product_img) }}" class="img-fluid">
+                        </div> <img src="{{ asset('uploads/products/' . $OurProduct->product_img) }}" class="img-fluid1 ">
                 </div>
                 <div class="product-detail-container">
                     <div class="d-flex justify-content-between align-items-center">

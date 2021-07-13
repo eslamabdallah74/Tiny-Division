@@ -144,8 +144,12 @@ label.radio input:checked+span {
     background-color: #dc3545;
     color: #fff
 }
-.img-fluid {
+.img-fluid1 {
     max-height: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }
 .card
 {

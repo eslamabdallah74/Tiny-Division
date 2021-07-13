@@ -36,6 +36,9 @@
                                         <th scope="col">Available</th>
                                         <th scope="col" class="text-center">Quantity</th>
                                         <th scope="col" class="text-right">Price</th>
+                                        <td></td>
+                                        <td></td>
+
                                         <th> </th>
                                     </tr>
                                 </thead>
@@ -85,6 +88,8 @@
                                         <td></td>
                                         <td>Sub-Total</td>
                                         <td class="text-right">${{number_format($userCart->total, 2)}} </td>
+                                        <td></td>
+
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -92,6 +97,8 @@
                                         <td></td>
                                         <td>Shipping</td>
                                         <td class="text-right">+$20,00</td>
+                                        <td></td>
+
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -99,6 +106,8 @@
                                         <td></td>
                                         <td><strong>Total</strong></td>
                                         <td class="text-right"><strong>${{ number_format($userCart->total+20, 2)}} </strong></td>
+                                        <td></td>
+
                                     </tr>
                                 </tbody>
                             </table>
@@ -117,13 +126,13 @@
                     <div class="col mb-2">
                         <div class="row">
                         <div class="col-sm-12 col-md-6 text-right">
-                                <button class="btn btn-lg btn-block btn-success text-uppercase"><a href="{{url('/')}}">Continue Shopping</a></button>
+                                <button id="Cshopping" class="btn btn-lg btn-block btn-success text-uppercase"><a href="{{url('/')}}">Continue Shopping</a></button>
                             </div>
                             <div class="col-sm-12 col-md-6 text-right">
                                 <form method="POST" action="{{route('Order.store')}}">
                                     @csrf
                                     <input type="hidden" name="cart_id" value="{{ $userCart->id }}">
-                                    <button class="btn btn-lg btn-block btn-success text-uppercase" value="submit" id='BuyToShowForm' style="margin-bottom: 20px;">
+                                    <button id="OrderNow" class="btn btn-lg btn-block btn-success text-uppercase" value="submit" id='BuyToShowForm' style="margin-bottom: 20px;">
                                         Order Now
                                     </button>
                                 </form>
