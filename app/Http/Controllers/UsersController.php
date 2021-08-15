@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;use Seld\PharUtils\Timestamps;
+use App\Models\User;
+use Seld\PharUtils\Timestamps;
 use Illuminate\Support\Facades\Hash;
 use Validator;
 use Carbon\Carbon;

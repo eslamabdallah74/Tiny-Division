@@ -45,9 +45,7 @@
 	<div class="header_section">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-3">
-					<div class="logo"><a href="#"><img src="{{asset('images/logo.png')}}"></a></div>
-				</div>
+
 				<div class="col-sm-9">
 					<nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -117,9 +115,6 @@
         <div class="mail_section">
             <div class="row">
                 <div class="col-sm-6 col-lg-2">
-                    <div><a href="#"><img src="{{asset("images/favicon.png")}}" ></a></div>
-                </div>
-                <div class="col-sm-6 col-lg-2">
                     <div class="footer-logo"><img src="{{asset("images/phone-icon.png")}}"><span class="map_text">(71) 1234567890</span></div>
                 </div>
                 <div class="col-sm-6 col-lg-3">
@@ -170,13 +165,6 @@
                             <li>Sitemap</li>
                         </ul>
                     </div>
-            </div>
-            <div class="col-sm-6 col-lg-2">
-                <h2 class="adderess_text">Newsletter</h2>
-                <div class="form-group">
-                    <input type="text" class="enter_email" placeholder="Enter Your email" name="Name">
-                </div>
-                <button class="subscribr_bt">Subscribe</button>
             </div>
             </div>
             </div>

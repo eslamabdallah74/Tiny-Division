@@ -66,7 +66,7 @@
     	    <div class="collection_section_2">
     	    	<div class="row">
                     @foreach ($TwoProducts as $key => $OneProduct)
-    	    		<div class="col-md-6">
+    	    		<div class="col-md-6 col-sm-12">
                         @if ($key == 0)
     	    			<div class="about-img">
                         @endif
